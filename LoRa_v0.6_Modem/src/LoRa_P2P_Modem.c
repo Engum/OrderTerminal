@@ -457,7 +457,7 @@ void processOrder(uint8_t receivedOrder, uint8_t terminalIdentifier)
 				// Send queue confirmed
 				M_BroadcastMessageToTerminal(terminal_A_conf);
 				
-				UART_SAM_To_IO(&terminal_A_conf);
+				//UART_SAM_To_IO(&terminal_A_conf);
 			}
 			break;
 		
@@ -476,7 +476,7 @@ void processOrder(uint8_t receivedOrder, uint8_t terminalIdentifier)
 				// send queue confirmed
 				M_BroadcastMessageToTerminal(terminal_B_conf);
 
-				UART_SAM_To_IO(&terminal_B_conf);
+				//UART_SAM_To_IO(&terminal_B_conf);
 			}
 			break;
 		
