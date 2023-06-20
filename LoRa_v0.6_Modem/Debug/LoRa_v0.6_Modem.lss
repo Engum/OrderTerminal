@@ -19,23 +19,23 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY
   7 .comment      0000008c  00000000  00000000  000300b4  2**0
                   CONTENTS, READONLY
-  8 .debug_info   00097b5b  00000000  00000000  00030140  2**0
+  8 .debug_info   00097aca  00000000  00000000  00030140  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_abbrev 0000d906  00000000  00000000  000c7c9b  2**0
+  9 .debug_abbrev 0000d906  00000000  00000000  000c7c0a  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_loc    0001ddb5  00000000  00000000  000d55a1  2**0
+ 10 .debug_loc    0001dd69  00000000  00000000  000d5510  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_aranges 00001950  00000000  00000000  000f3356  2**0
+ 11 .debug_aranges 00001948  00000000  00000000  000f3279  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 00002538  00000000  00000000  000f4ca6  2**0
+ 12 .debug_ranges 00002530  00000000  00000000  000f4bc1  2**0
                   CONTENTS, READONLY, DEBUGGING
- 13 .debug_macro  0001bfdd  00000000  00000000  000f71de  2**0
+ 13 .debug_macro  0001bfd7  00000000  00000000  000f70f1  2**0
                   CONTENTS, READONLY, DEBUGGING
- 14 .debug_line   00035f9e  00000000  00000000  001131bb  2**0
+ 14 .debug_line   00035f8d  00000000  00000000  001130c8  2**0
                   CONTENTS, READONLY, DEBUGGING
- 15 .debug_str    000b5e1d  00000000  00000000  00149159  2**0
+ 15 .debug_str    000b5d99  00000000  00000000  00149055  2**0
                   CONTENTS, READONLY, DEBUGGING
- 16 .debug_frame  000051cc  00000000  00000000  001fef78  2**2
+ 16 .debug_frame  000051b4  00000000  00000000  001fedf0  2**2
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -13837,35 +13837,78 @@ static void sal_FillSubKey( uint8_t *source, uint8_t *key, uint8_t size)
     741c:	0001672f 	.word	0x0001672f
 
 00007420 <DemoOutput_Greeting>:
+
+bool PUSH_BUTTON_pressed;
+MIWI_TICK PUSH_BUTTON_press_time;
+
+void DemoOutput_Greeting(void)
+{    
     7420:	b510      	push	{r4, lr}
+		LCDDisplay((char *)"Simple LoRa P2P Demo on \n SAMR34 Node ", 0, true);
+	#endif
+#endif
+    #if defined (ENABLE_CONSOLE)
+        #if defined(PROTOCOL_P2P)
+			printf("\n\r-----------------------------------------------------\n\r-----------------------------------------------------");
     7422:	480e      	ldr	r0, [pc, #56]	; (745c <DemoOutput_Greeting+0x3c>)
     7424:	4c0e      	ldr	r4, [pc, #56]	; (7460 <DemoOutput_Greeting+0x40>)
     7426:	47a0      	blx	r4
+            printf("\r\nStarting Node 1 of Simple Demo for LoRa P2P Stack ...");  
     7428:	480e      	ldr	r0, [pc, #56]	; (7464 <DemoOutput_Greeting+0x44>)
     742a:	47a0      	blx	r4
+        #endif
+		#if defined(ENABLE_SLEEP_FEATURE)
+			printf("\r\nReduced Function Device (RFD) operations") ;
+		#else
+			printf("\r\nFull Function Device (FFD) operations") ;
     742c:	480e      	ldr	r0, [pc, #56]	; (7468 <DemoOutput_Greeting+0x48>)
     742e:	47a0      	blx	r4
+		#endif
+        printf("\r\n     RF Transceiver: SX_1276");
     7430:	480e      	ldr	r0, [pc, #56]	; (746c <DemoOutput_Greeting+0x4c>)
     7432:	47a0      	blx	r4
+        printf("\r\n     Demo Instruction:");
     7434:	480e      	ldr	r0, [pc, #56]	; (7470 <DemoOutput_Greeting+0x50>)
     7436:	47a0      	blx	r4
+        printf("\r\n                     Power on the board until LED 1 lights up");
     7438:	480e      	ldr	r0, [pc, #56]	; (7474 <DemoOutput_Greeting+0x54>)
     743a:	47a0      	blx	r4
+        printf("\r\n                     to indicate connecting with peer.");
     743c:	480e      	ldr	r0, [pc, #56]	; (7478 <DemoOutput_Greeting+0x58>)
     743e:	47a0      	blx	r4
+        printf("\r\n                     Push Button 1 to broadcast message.");
     7440:	480e      	ldr	r0, [pc, #56]	; (747c <DemoOutput_Greeting+0x5c>)
     7442:	47a0      	blx	r4
+        printf("\r\n                     LED 1 will be toggled upon receiving messages. ");
     7444:	480e      	ldr	r0, [pc, #56]	; (7480 <DemoOutput_Greeting+0x60>)
     7446:	47a0      	blx	r4
+        printf("\r\n\r\n");		
     7448:	480e      	ldr	r0, [pc, #56]	; (7484 <DemoOutput_Greeting+0x64>)
     744a:	4c0f      	ldr	r4, [pc, #60]	; (7488 <DemoOutput_Greeting+0x68>)
     744c:	47a0      	blx	r4
+		#ifdef PERIODIC_TX
+			printf("Periodic Transmission = Enable\r\n") ;
+		#else
+			printf("Periodic Transmission = Disable\r\n") ;
     744e:	480f      	ldr	r0, [pc, #60]	; (748c <DemoOutput_Greeting+0x6c>)
     7450:	47a0      	blx	r4
+		#endif
+		#ifdef DUTY_CYCLING
+			printf("Duty Cycling support = Enable\r\n") ;
+		#else
+			printf("Duty Cycling support = Disable\r\n") ;
     7452:	480f      	ldr	r0, [pc, #60]	; (7490 <DemoOutput_Greeting+0x70>)
     7454:	47a0      	blx	r4
+		#endif
+		#ifdef LBT_SUPPORT_ENABLED
+			printf("LBT support = Enable\r\n") ;
+		#else
+			printf("LBT support = Disable\r\n") ;
     7456:	480f      	ldr	r0, [pc, #60]	; (7494 <DemoOutput_Greeting+0x74>)
     7458:	47a0      	blx	r4
+		#endif
+    #endif 
+}        
     745a:	bd10      	pop	{r4, pc}
     745c:	00017cb4 	.word	0x00017cb4
     7460:	00016ce9 	.word	0x00016ce9
@@ -13884,74 +13927,120 @@ static void sal_FillSubKey( uint8_t *source, uint8_t *key, uint8_t size)
     7494:	00017f08 	.word	0x00017f08
 
 00007498 <DemoOutput_Instruction>:
+		LCDDisplay((char *)"SW     : Broadcast \nBUTTON1: Unicast", 0, false);
+	#else
+		LCDDisplay((char *)"SW: Broadcast", 0, false);
+	#endif
+#endif
+}
     7498:	4770      	bx	lr
     749a:	Address 0x0000749a is out of bounds.
 
 
 0000749c <DemoOutput_HandleMessage>:
+
+
+void DemoOutput_HandleMessage(void)
+{
     749c:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
+    uint8_t i;
+
+    if( rxMessage.flags.bits.secEn )
     749e:	4b2a      	ldr	r3, [pc, #168]	; (7548 <DemoOutput_HandleMessage+0xac>)
     74a0:	781b      	ldrb	r3, [r3, #0]
     74a2:	071b      	lsls	r3, r3, #28
     74a4:	d426      	bmi.n	74f4 <DemoOutput_HandleMessage+0x58>
+    {
+        sio2host_tx((uint8_t *)"Secured ", sizeof("Secured "));
+    }
+
+    if( rxMessage.flags.bits.broadcast )
     74a6:	4b28      	ldr	r3, [pc, #160]	; (7548 <DemoOutput_HandleMessage+0xac>)
     74a8:	781b      	ldrb	r3, [r3, #0]
     74aa:	079b      	lsls	r3, r3, #30
     74ac:	d027      	beq.n	74fe <DemoOutput_HandleMessage+0x62>
+    {
+        sio2host_tx((uint8_t *)"Broadcast Packet with RSSI ", sizeof("Broadcast Packet with RSSI "));
     74ae:	211c      	movs	r1, #28
     74b0:	4826      	ldr	r0, [pc, #152]	; (754c <DemoOutput_HandleMessage+0xb0>)
     74b2:	4b27      	ldr	r3, [pc, #156]	; (7550 <DemoOutput_HandleMessage+0xb4>)
     74b4:	4798      	blx	r3
+    }
+    else
+    {
+        sio2host_tx((uint8_t *)"Unicast Packet with RSSI ",sizeof("Unicast Packet with RSSI "));
+    }
+    printf("%02x", rxMessage.PacketRSSI);
     74b6:	4c24      	ldr	r4, [pc, #144]	; (7548 <DemoOutput_HandleMessage+0xac>)
     74b8:	7b61      	ldrb	r1, [r4, #13]
     74ba:	4826      	ldr	r0, [pc, #152]	; (7554 <DemoOutput_HandleMessage+0xb8>)
     74bc:	4b26      	ldr	r3, [pc, #152]	; (7558 <DemoOutput_HandleMessage+0xbc>)
     74be:	4798      	blx	r3
+    if( rxMessage.flags.bits.srcPrsnt )
     74c0:	7823      	ldrb	r3, [r4, #0]
     74c2:	065b      	lsls	r3, r3, #25
     74c4:	d420      	bmi.n	7508 <DemoOutput_HandleMessage+0x6c>
+            {
+                printf("%x", rxMessage.SourceAddress[MY_ADDRESS_LENGTH-1-i]);
+            }    
+        }
+    }
+    sio2host_tx((uint8_t *)": ",sizeof(": "));
     74c6:	2103      	movs	r1, #3
     74c8:	4824      	ldr	r0, [pc, #144]	; (755c <DemoOutput_HandleMessage+0xc0>)
     74ca:	4b21      	ldr	r3, [pc, #132]	; (7550 <DemoOutput_HandleMessage+0xb4>)
     74cc:	4798      	blx	r3
+    
+    for(i = 0; i < rxMessage.PayloadSize; i++)
     74ce:	4b1e      	ldr	r3, [pc, #120]	; (7548 <DemoOutput_HandleMessage+0xac>)
     74d0:	7b1b      	ldrb	r3, [r3, #12]
     74d2:	2b00      	cmp	r3, #0
     74d4:	d00a      	beq.n	74ec <DemoOutput_HandleMessage+0x50>
     74d6:	2400      	movs	r4, #0
+    {
+        sio2host_putchar(rxMessage.Payload[i]);
     74d8:	4d1b      	ldr	r5, [pc, #108]	; (7548 <DemoOutput_HandleMessage+0xac>)
     74da:	4e21      	ldr	r6, [pc, #132]	; (7560 <DemoOutput_HandleMessage+0xc4>)
     74dc:	68ab      	ldr	r3, [r5, #8]
     74de:	5d18      	ldrb	r0, [r3, r4]
     74e0:	47b0      	blx	r6
+    for(i = 0; i < rxMessage.PayloadSize; i++)
     74e2:	3401      	adds	r4, #1
     74e4:	b2e4      	uxtb	r4, r4
     74e6:	7b2b      	ldrb	r3, [r5, #12]
     74e8:	42a3      	cmp	r3, r4
     74ea:	d8f7      	bhi.n	74dc <DemoOutput_HandleMessage+0x40>
+    }   
+	printf("\r\n");    
     74ec:	481d      	ldr	r0, [pc, #116]	; (7564 <DemoOutput_HandleMessage+0xc8>)
     74ee:	4b1e      	ldr	r3, [pc, #120]	; (7568 <DemoOutput_HandleMessage+0xcc>)
     74f0:	4798      	blx	r3
+} 
     74f2:	bdf8      	pop	{r3, r4, r5, r6, r7, pc}
+        sio2host_tx((uint8_t *)"Secured ", sizeof("Secured "));
     74f4:	2109      	movs	r1, #9
     74f6:	481d      	ldr	r0, [pc, #116]	; (756c <DemoOutput_HandleMessage+0xd0>)
     74f8:	4b15      	ldr	r3, [pc, #84]	; (7550 <DemoOutput_HandleMessage+0xb4>)
     74fa:	4798      	blx	r3
     74fc:	e7d3      	b.n	74a6 <DemoOutput_HandleMessage+0xa>
+        sio2host_tx((uint8_t *)"Unicast Packet with RSSI ",sizeof("Unicast Packet with RSSI "));
     74fe:	211a      	movs	r1, #26
     7500:	481b      	ldr	r0, [pc, #108]	; (7570 <DemoOutput_HandleMessage+0xd4>)
     7502:	4b13      	ldr	r3, [pc, #76]	; (7550 <DemoOutput_HandleMessage+0xb4>)
     7504:	4798      	blx	r3
     7506:	e7d6      	b.n	74b6 <DemoOutput_HandleMessage+0x1a>
+        sio2host_tx((uint8_t *)" from ", sizeof(" from "));
     7508:	2107      	movs	r1, #7
     750a:	481a      	ldr	r0, [pc, #104]	; (7574 <DemoOutput_HandleMessage+0xd8>)
     750c:	4b10      	ldr	r3, [pc, #64]	; (7550 <DemoOutput_HandleMessage+0xb4>)
     750e:	4798      	blx	r3
+        if( rxMessage.flags.bits.altSrcAddr )
     7510:	4b0d      	ldr	r3, [pc, #52]	; (7548 <DemoOutput_HandleMessage+0xac>)
     7512:	781b      	ldrb	r3, [r3, #0]
     7514:	2407      	movs	r4, #7
     7516:	2b7f      	cmp	r3, #127	; 0x7f
     7518:	d809      	bhi.n	752e <DemoOutput_HandleMessage+0x92>
+                printf("%x", rxMessage.SourceAddress[MY_ADDRESS_LENGTH-1-i]);
     751a:	4f0b      	ldr	r7, [pc, #44]	; (7548 <DemoOutput_HandleMessage+0xac>)
     751c:	4e16      	ldr	r6, [pc, #88]	; (7578 <DemoOutput_HandleMessage+0xdc>)
     751e:	4d0e      	ldr	r5, [pc, #56]	; (7558 <DemoOutput_HandleMessage+0xbc>)
@@ -13959,9 +14048,11 @@ static void sal_FillSubKey( uint8_t *source, uint8_t *key, uint8_t size)
     7522:	5d19      	ldrb	r1, [r3, r4]
     7524:	0030      	movs	r0, r6
     7526:	47a8      	blx	r5
+            for(i = 0; i < MY_ADDRESS_LENGTH; i++)
     7528:	3c01      	subs	r4, #1
     752a:	d2f9      	bcs.n	7520 <DemoOutput_HandleMessage+0x84>
     752c:	e7cb      	b.n	74c6 <DemoOutput_HandleMessage+0x2a>
+            printf( "%x", rxMessage.SourceAddress[1]);
     752e:	4e06      	ldr	r6, [pc, #24]	; (7548 <DemoOutput_HandleMessage+0xac>)
     7530:	6873      	ldr	r3, [r6, #4]
     7532:	7859      	ldrb	r1, [r3, #1]
@@ -13969,6 +14060,7 @@ static void sal_FillSubKey( uint8_t *source, uint8_t *key, uint8_t size)
     7536:	0028      	movs	r0, r5
     7538:	4c07      	ldr	r4, [pc, #28]	; (7558 <DemoOutput_HandleMessage+0xbc>)
     753a:	47a0      	blx	r4
+            printf( "%x", rxMessage.SourceAddress[0]);
     753c:	6873      	ldr	r3, [r6, #4]
     753e:	7819      	ldrb	r1, [r3, #0]
     7540:	0028      	movs	r0, r5
@@ -13990,22 +14082,37 @@ static void sal_FillSubKey( uint8_t *source, uint8_t *key, uint8_t size)
     7578:	00017f74 	.word	0x00017f74
 
 0000757c <DemoOutput_UpdateTxRx>:
+void DemoOutput_UpdateTxRx(uint8_t TxNum, uint8_t RxNum)
+{
+#if defined (ENABLE_LCD)
+    LCDTRXCount(TxNum, RxNum);  
+#endif
+}
     757c:	4770      	bx	lr
     757e:	Address 0x0000757e is out of bounds.
 
 
 00007580 <DemoOutput_ChannelError>:
+
+void DemoOutput_ChannelError(uint8_t channel)
+{
     7580:	b570      	push	{r4, r5, r6, lr}
     7582:	0005      	movs	r5, r0
+    #if defined (ENABLE_CONSOLE)
+        printf("\r\nSelection of channel ");
     7584:	4804      	ldr	r0, [pc, #16]	; (7598 <DemoOutput_ChannelError+0x18>)
     7586:	4c05      	ldr	r4, [pc, #20]	; (759c <DemoOutput_ChannelError+0x1c>)
     7588:	47a0      	blx	r4
+        printf("%d", channel);
     758a:	0029      	movs	r1, r5
     758c:	4804      	ldr	r0, [pc, #16]	; (75a0 <DemoOutput_ChannelError+0x20>)
     758e:	47a0      	blx	r4
+        printf(" is not supported in current configuration.\r\n");
     7590:	4804      	ldr	r0, [pc, #16]	; (75a4 <DemoOutput_ChannelError+0x24>)
     7592:	4b05      	ldr	r3, [pc, #20]	; (75a8 <DemoOutput_ChannelError+0x28>)
     7594:	4798      	blx	r3
+    #endif
+}
     7596:	bd70      	pop	{r4, r5, r6, pc}
     7598:	00017c6c 	.word	0x00017c6c
     759c:	00016ce9 	.word	0x00016ce9
@@ -14014,24 +14121,47 @@ static void sal_FillSubKey( uint8_t *source, uint8_t *key, uint8_t size)
     75a8:	00016e05 	.word	0x00016e05
 
 000075ac <DemoOutput_BroadcastFail>:
+    LCDDisplay((char *)" Unicast Failed", 0, true);
+#endif
+}    
+
+void DemoOutput_BroadcastFail(void)
+{
     75ac:	b510      	push	{r4, lr}
+	#if defined (ENABLE_CONSOLE)
+	printf("\r\nBroadcast Failed\r\n");
     75ae:	4802      	ldr	r0, [pc, #8]	; (75b8 <DemoOutput_BroadcastFail+0xc>)
     75b0:	4b02      	ldr	r3, [pc, #8]	; (75bc <DemoOutput_BroadcastFail+0x10>)
     75b2:	4798      	blx	r3
+	#endif
+	#if defined (ENABLE_LCD)
+	LCDDisplay((char *)" Broadcast Failed", 0, true);
+	#endif
+}    
     75b4:	bd10      	pop	{r4, pc}
     75b6:	46c0      	nop			; (mov r8, r8)
     75b8:	00017c14 	.word	0x00017c14
     75bc:	00016e05 	.word	0x00016e05
 
 000075c0 <TxToutCallback>:
+uint8_t ferryState = 0;
+
+#define PAYLOAD_TERMINAL 1
+
+void TxToutCallback(void)
+{
     75c0:	b510      	push	{r4, lr}
+	/* That bring the node back to continuous transaction cycle */
+	PHY_DataConf(TRANSACTION_EXPIRED);
     75c2:	2005      	movs	r0, #5
     75c4:	4b03      	ldr	r3, [pc, #12]	; (75d4 <TxToutCallback+0x14>)
     75c6:	4798      	blx	r3
+	SwTimerStop(TxTimerId);
     75c8:	4b03      	ldr	r3, [pc, #12]	; (75d8 <TxToutCallback+0x18>)
     75ca:	7818      	ldrb	r0, [r3, #0]
     75cc:	4b03      	ldr	r3, [pc, #12]	; (75dc <TxToutCallback+0x1c>)
     75ce:	4798      	blx	r3
+}
     75d0:	bd10      	pop	{r4, pc}
     75d2:	46c0      	nop			; (mov r8, r8)
     75d4:	00009ea5 	.word	0x00009ea5
@@ -14039,20 +14169,34 @@ static void sal_FillSubKey( uint8_t *source, uint8_t *key, uint8_t size)
     75dc:	0000d40d 	.word	0x0000d40d
 
 000075e0 <dataConfcb>:
+
+
+// Transmission callback
+void dataConfcb(uint8_t handle, miwi_status_t status, uint8_t* msgPointer)
+{
     75e0:	b510      	push	{r4, lr}
     75e2:	0014      	movs	r4, r2
+#if defined (ENABLE_CONSOLE)
+	printf("\nData Confirm: Handle: %d status:%d \r\n", handle, status);
     75e4:	000a      	movs	r2, r1
     75e6:	0001      	movs	r1, r0
     75e8:	4805      	ldr	r0, [pc, #20]	; (7600 <dataConfcb+0x20>)
     75ea:	4b06      	ldr	r3, [pc, #24]	; (7604 <dataConfcb+0x24>)
     75ec:	4798      	blx	r3
+#endif // #if defined (ENABLE_CONSOLE)
+	/* Stop transmission timeout timer */
+	SwTimerStop(TxTimerId);
     75ee:	4b06      	ldr	r3, [pc, #24]	; (7608 <dataConfcb+0x28>)
     75f0:	7818      	ldrb	r0, [r3, #0]
     75f2:	4b06      	ldr	r3, [pc, #24]	; (760c <dataConfcb+0x2c>)
     75f4:	4798      	blx	r3
+	/* Free payload buffer allocated */
+	MiMem_Free(msgPointer);
     75f6:	0020      	movs	r0, r4
     75f8:	4b05      	ldr	r3, [pc, #20]	; (7610 <dataConfcb+0x30>)
     75fa:	4798      	blx	r3
+	
+}
     75fc:	bd10      	pop	{r4, pc}
     75fe:	46c0      	nop			; (mov r8, r8)
     7600:	00018228 	.word	0x00018228
@@ -14062,53 +14206,85 @@ static void sal_FillSubKey( uint8_t *source, uint8_t *key, uint8_t size)
     7610:	0000bdd9 	.word	0x0000bdd9
 
 00007614 <M_BroadcastMessageToTerminal>:
+	.rear = -1
+};
+
+
+void M_BroadcastMessageToTerminal(uint8_t signal)
+{
     7614:	b5f0      	push	{r4, r5, r6, r7, lr}
     7616:	46ce      	mov	lr, r9
     7618:	4647      	mov	r7, r8
     761a:	b580      	push	{r7, lr}
     761c:	b087      	sub	sp, #28
     761e:	0007      	movs	r7, r0
+	uint8_t* dataPtr = NULL;
+	uint8_t dataLen = 0;
+	uint16_t broadcastAddress = 0xFFFF;
     7620:	2201      	movs	r2, #1
     7622:	4252      	negs	r2, r2
     7624:	2316      	movs	r3, #22
     7626:	446b      	add	r3, sp
     7628:	801a      	strh	r2, [r3, #0]
+	
+	MiMem_Free(previousMessage);
     762a:	4d23      	ldr	r5, [pc, #140]	; (76b8 <M_BroadcastMessageToTerminal+0xa4>)
     762c:	6828      	ldr	r0, [r5, #0]
     762e:	4b23      	ldr	r3, [pc, #140]	; (76bc <M_BroadcastMessageToTerminal+0xa8>)
     7630:	4798      	blx	r3
+	previousMessage = MiMem_Alloc(CALC_SEC_PAYLOAD_SIZE(PAYLOAD_TERMINAL));
     7632:	2010      	movs	r0, #16
     7634:	4c22      	ldr	r4, [pc, #136]	; (76c0 <M_BroadcastMessageToTerminal+0xac>)
     7636:	47a0      	blx	r4
     7638:	6028      	str	r0, [r5, #0]
+	
+	dataPtr = MiMem_Alloc(CALC_SEC_PAYLOAD_SIZE(PAYLOAD_TERMINAL));
     763a:	2010      	movs	r0, #16
     763c:	47a0      	blx	r4
     763e:	1e06      	subs	r6, r0, #0
+	
+	if (NULL == dataPtr) return;
     7640:	d02b      	beq.n	769a <M_BroadcastMessageToTerminal+0x86>
+	
+	for (i = 0; i < PAYLOAD_TERMINAL; i++)
     7642:	2200      	movs	r2, #0
     7644:	4b1f      	ldr	r3, [pc, #124]	; (76c4 <M_BroadcastMessageToTerminal+0xb0>)
     7646:	701a      	strb	r2, [r3, #0]
+	{
+		previousMessage[i] = signal;
     7648:	4b1b      	ldr	r3, [pc, #108]	; (76b8 <M_BroadcastMessageToTerminal+0xa4>)
     764a:	4699      	mov	r9, r3
+		dataPtr[dataLen++] = signal;
+		sio2host_putchar(dataPtr[i]);
     764c:	4d1d      	ldr	r5, [pc, #116]	; (76c4 <M_BroadcastMessageToTerminal+0xb0>)
     764e:	4b1e      	ldr	r3, [pc, #120]	; (76c8 <M_BroadcastMessageToTerminal+0xb4>)
     7650:	4698      	mov	r8, r3
+		previousMessage[i] = signal;
     7652:	464b      	mov	r3, r9
     7654:	681b      	ldr	r3, [r3, #0]
     7656:	701f      	strb	r7, [r3, #0]
+		dataPtr[dataLen++] = signal;
     7658:	1c54      	adds	r4, r2, #1
     765a:	b2e4      	uxtb	r4, r4
     765c:	54b7      	strb	r7, [r6, r2]
+		sio2host_putchar(dataPtr[i]);
     765e:	782b      	ldrb	r3, [r5, #0]
     7660:	5cf0      	ldrb	r0, [r6, r3]
     7662:	47c0      	blx	r8
+	for (i = 0; i < PAYLOAD_TERMINAL; i++)
     7664:	782b      	ldrb	r3, [r5, #0]
     7666:	3301      	adds	r3, #1
     7668:	b2db      	uxtb	r3, r3
     766a:	702b      	strb	r3, [r5, #0]
+		dataPtr[dataLen++] = signal;
     766c:	0022      	movs	r2, r4
+	for (i = 0; i < PAYLOAD_TERMINAL; i++)
     766e:	2b00      	cmp	r3, #0
     7670:	d0ef      	beq.n	7652 <M_BroadcastMessageToTerminal+0x3e>
+	}
+			
+	// Broadcast the message
+	if (MiApp_SendData(SHORT_ADDR_LEN, (uint8_t *)&broadcastAddress, dataLen, dataPtr, msghandledemo++, true, dataConfcb) == false)
     7672:	4a16      	ldr	r2, [pc, #88]	; (76cc <M_BroadcastMessageToTerminal+0xb8>)
     7674:	7813      	ldrb	r3, [r2, #0]
     7676:	1c59      	adds	r1, r3, #1
@@ -14127,13 +14303,22 @@ static void sal_FillSubKey( uint8_t *source, uint8_t *key, uint8_t size)
     7690:	47a0      	blx	r4
     7692:	2800      	cmp	r0, #0
     7694:	d106      	bne.n	76a4 <M_BroadcastMessageToTerminal+0x90>
+	{
+		DemoOutput_BroadcastFail();
     7696:	4b10      	ldr	r3, [pc, #64]	; (76d8 <M_BroadcastMessageToTerminal+0xc4>)
     7698:	4798      	blx	r3
+	else
+	{
+		SwTimerStart(TxTimerId, MS_TO_US(5000), 0, (void *)TxToutCallback, NULL);
+	}
+	
+}
     769a:	b007      	add	sp, #28
     769c:	bc0c      	pop	{r2, r3}
     769e:	4690      	mov	r8, r2
     76a0:	4699      	mov	r9, r3
     76a2:	bdf0      	pop	{r4, r5, r6, r7, pc}
+		SwTimerStart(TxTimerId, MS_TO_US(5000), 0, (void *)TxToutCallback, NULL);
     76a4:	4b0d      	ldr	r3, [pc, #52]	; (76dc <M_BroadcastMessageToTerminal+0xc8>)
     76a6:	7818      	ldrb	r0, [r3, #0]
     76a8:	2300      	movs	r3, #0
@@ -14147,7 +14332,7 @@ static void sal_FillSubKey( uint8_t *source, uint8_t *key, uint8_t size)
     76b8:	20000100 	.word	0x20000100
     76bc:	0000bdd9 	.word	0x0000bdd9
     76c0:	0000bd1d 	.word	0x0000bd1d
-    76c4:	20001f65 	.word	0x20001f65
+    76c4:	20001f64 	.word	0x20001f64
     76c8:	0000c1e9 	.word	0x0000c1e9
     76cc:	200000ff 	.word	0x200000ff
     76d0:	000075e1 	.word	0x000075e1
@@ -14159,13 +14344,20 @@ static void sal_FillSubKey( uint8_t *source, uint8_t *key, uint8_t size)
     76e8:	0000d0f5 	.word	0x0000d0f5
 
 000076ec <M_SendReceivedUARTMessage>:
+
+
+// Send received UART message with LoRa
+void M_SendReceivedUARTMessage(uint8_t message)
+{
     76ec:	b510      	push	{r4, lr}
     76ee:	b082      	sub	sp, #8
     76f0:	0004      	movs	r4, r0
+	printf("\n\r Send UART message %x \n", message);
     76f2:	0001      	movs	r1, r0
     76f4:	4822      	ldr	r0, [pc, #136]	; (7780 <M_SendReceivedUARTMessage+0x94>)
     76f6:	4b23      	ldr	r3, [pc, #140]	; (7784 <M_SendReceivedUARTMessage+0x98>)
     76f8:	4798      	blx	r3
+	switch(message)
     76fa:	0023      	movs	r3, r4
     76fc:	3b70      	subs	r3, #112	; 0x70
     76fe:	b2da      	uxtb	r2, r3
@@ -14175,60 +14367,91 @@ static void sal_FillSubKey( uint8_t *source, uint8_t *key, uint8_t size)
     7706:	4a20      	ldr	r2, [pc, #128]	; (7788 <M_SendReceivedUARTMessage+0x9c>)
     7708:	58d3      	ldr	r3, [r2, r3]
     770a:	469f      	mov	pc, r3
+	{
+		case TEAID_GCMD_RESET:
+			break;
+			
+		case TEAID_GCMD_OPEN:
+			ferryState = TEAID; 
     770c:	2240      	movs	r2, #64	; 0x40
     770e:	4b1f      	ldr	r3, [pc, #124]	; (778c <M_SendReceivedUARTMessage+0xa0>)
     7710:	701a      	strb	r2, [r3, #0]
+			printf("\n Open gate at terminal A from IO \n\r");
     7712:	481f      	ldr	r0, [pc, #124]	; (7790 <M_SendReceivedUARTMessage+0xa4>)
     7714:	4b1b      	ldr	r3, [pc, #108]	; (7784 <M_SendReceivedUARTMessage+0x98>)
     7716:	4798      	blx	r3
+		default: ;
+			uint8_t send_message_again = SEND_MESSAGE_AGAIN;
+			UART_SAM_To_IO(&send_message_again);
+			return;
+	}
+	M_BroadcastMessageToTerminal(message);
     7718:	0020      	movs	r0, r4
     771a:	4b1e      	ldr	r3, [pc, #120]	; (7794 <M_SendReceivedUARTMessage+0xa8>)
     771c:	4798      	blx	r3
+}
     771e:	b002      	add	sp, #8
     7720:	bd10      	pop	{r4, pc}
+			printf("\n Close gate at terminal A from IO \n\r");
     7722:	481d      	ldr	r0, [pc, #116]	; (7798 <M_SendReceivedUARTMessage+0xac>)
     7724:	4b17      	ldr	r3, [pc, #92]	; (7784 <M_SendReceivedUARTMessage+0x98>)
     7726:	4798      	blx	r3
+			break;
     7728:	e7f6      	b.n	7718 <M_SendReceivedUARTMessage+0x2c>
+			ferryState = TEBID;
     772a:	2280      	movs	r2, #128	; 0x80
     772c:	4b17      	ldr	r3, [pc, #92]	; (778c <M_SendReceivedUARTMessage+0xa0>)
     772e:	701a      	strb	r2, [r3, #0]
+			printf("\n Open gate at terminal B from IO \n\r");
     7730:	481a      	ldr	r0, [pc, #104]	; (779c <M_SendReceivedUARTMessage+0xb0>)
     7732:	4b14      	ldr	r3, [pc, #80]	; (7784 <M_SendReceivedUARTMessage+0x98>)
     7734:	4798      	blx	r3
+			break;
     7736:	e7ef      	b.n	7718 <M_SendReceivedUARTMessage+0x2c>
+			printf("\n Close gate at terminal B from IO \n\r");
     7738:	4819      	ldr	r0, [pc, #100]	; (77a0 <M_SendReceivedUARTMessage+0xb4>)
     773a:	4b12      	ldr	r3, [pc, #72]	; (7784 <M_SendReceivedUARTMessage+0x98>)
     773c:	4798      	blx	r3
+			break;
     773e:	e7eb      	b.n	7718 <M_SendReceivedUARTMessage+0x2c>
+			if (s.front == TEAID_REQF_REQUEST)
     7740:	4b18      	ldr	r3, [pc, #96]	; (77a4 <M_SendReceivedUARTMessage+0xb8>)
     7742:	78db      	ldrb	r3, [r3, #3]
     7744:	2bde      	cmp	r3, #222	; 0xde
     7746:	d1e7      	bne.n	7718 <M_SendReceivedUARTMessage+0x2c>
+				pop_front(&s);
     7748:	4816      	ldr	r0, [pc, #88]	; (77a4 <M_SendReceivedUARTMessage+0xb8>)
     774a:	4b17      	ldr	r3, [pc, #92]	; (77a8 <M_SendReceivedUARTMessage+0xbc>)
     774c:	4798      	blx	r3
     774e:	e7e3      	b.n	7718 <M_SendReceivedUARTMessage+0x2c>
+			ferryState = IN_TRANSIT;
     7750:	22a0      	movs	r2, #160	; 0xa0
     7752:	4b0e      	ldr	r3, [pc, #56]	; (778c <M_SendReceivedUARTMessage+0xa0>)
     7754:	701a      	strb	r2, [r3, #0]
+			break;
     7756:	e7df      	b.n	7718 <M_SendReceivedUARTMessage+0x2c>
+			if (s.front == TEBID_REQF_REQUEST)
     7758:	4b12      	ldr	r3, [pc, #72]	; (77a4 <M_SendReceivedUARTMessage+0xb8>)
     775a:	78db      	ldrb	r3, [r3, #3]
     775c:	2bee      	cmp	r3, #238	; 0xee
     775e:	d1db      	bne.n	7718 <M_SendReceivedUARTMessage+0x2c>
+				pop_front(&s);
     7760:	4810      	ldr	r0, [pc, #64]	; (77a4 <M_SendReceivedUARTMessage+0xb8>)
     7762:	4b11      	ldr	r3, [pc, #68]	; (77a8 <M_SendReceivedUARTMessage+0xbc>)
     7764:	4798      	blx	r3
     7766:	e7d7      	b.n	7718 <M_SendReceivedUARTMessage+0x2c>
+			ferryState = IN_TRANSIT;
     7768:	22a0      	movs	r2, #160	; 0xa0
     776a:	4b08      	ldr	r3, [pc, #32]	; (778c <M_SendReceivedUARTMessage+0xa0>)
     776c:	701a      	strb	r2, [r3, #0]
+			break;
     776e:	e7d3      	b.n	7718 <M_SendReceivedUARTMessage+0x2c>
+			uint8_t send_message_again = SEND_MESSAGE_AGAIN;
     7770:	466b      	mov	r3, sp
     7772:	1dd8      	adds	r0, r3, #7
     7774:	23aa      	movs	r3, #170	; 0xaa
     7776:	7003      	strb	r3, [r0, #0]
+			UART_SAM_To_IO(&send_message_again);
     7778:	4b0c      	ldr	r3, [pc, #48]	; (77ac <M_SendReceivedUARTMessage+0xc0>)
     777a:	4798      	blx	r3
     777c:	e7cf      	b.n	771e <M_SendReceivedUARTMessage+0x32>
@@ -14247,56 +14470,83 @@ static void sal_FillSubKey( uint8_t *source, uint8_t *key, uint8_t size)
     77ac:	0000deb1 	.word	0x0000deb1
 
 000077b0 <processOrder>:
+}
+
+
+
+void processOrder(uint8_t receivedOrder, uint8_t terminalIdentifier)
+{
     77b0:	b510      	push	{r4, lr}
     77b2:	b082      	sub	sp, #8
+	
+	switch (terminalIdentifier)
     77b4:	2940      	cmp	r1, #64	; 0x40
     77b6:	d003      	beq.n	77c0 <processOrder+0x10>
     77b8:	2980      	cmp	r1, #128	; 0x80
     77ba:	d018      	beq.n	77ee <processOrder+0x3e>
+			break;
+		
+		default:
+			break;
+	}
+}
     77bc:	b002      	add	sp, #8
     77be:	bd10      	pop	{r4, pc}
+			if (ferryState == TEAID)
     77c0:	4b16      	ldr	r3, [pc, #88]	; (781c <processOrder+0x6c>)
     77c2:	781b      	ldrb	r3, [r3, #0]
     77c4:	2b40      	cmp	r3, #64	; 0x40
     77c6:	d00e      	beq.n	77e6 <processOrder+0x36>
+				push_back(&s, receivedOrder);
     77c8:	0001      	movs	r1, r0
     77ca:	4815      	ldr	r0, [pc, #84]	; (7820 <processOrder+0x70>)
     77cc:	4b15      	ldr	r3, [pc, #84]	; (7824 <processOrder+0x74>)
     77ce:	4798      	blx	r3
+				uint8_t terminal_A_conf = TEAID_CQUD_QCONF;
     77d0:	466b      	mov	r3, sp
     77d2:	1ddc      	adds	r4, r3, #7
     77d4:	2375      	movs	r3, #117	; 0x75
     77d6:	7023      	strb	r3, [r4, #0]
+				M_BroadcastMessageToTerminal(terminal_A_conf);
     77d8:	2075      	movs	r0, #117	; 0x75
     77da:	4b13      	ldr	r3, [pc, #76]	; (7828 <processOrder+0x78>)
     77dc:	4798      	blx	r3
+				UART_SAM_To_IO(&terminal_A_conf);
     77de:	0020      	movs	r0, r4
     77e0:	4b12      	ldr	r3, [pc, #72]	; (782c <processOrder+0x7c>)
     77e2:	4798      	blx	r3
     77e4:	e7ea      	b.n	77bc <processOrder+0xc>
+				M_BroadcastMessageToTerminal(teaid_gcmd_open);
     77e6:	2072      	movs	r0, #114	; 0x72
     77e8:	4b0f      	ldr	r3, [pc, #60]	; (7828 <processOrder+0x78>)
     77ea:	4798      	blx	r3
     77ec:	e7e6      	b.n	77bc <processOrder+0xc>
+			if (ferryState == TEBID)
     77ee:	4b0b      	ldr	r3, [pc, #44]	; (781c <processOrder+0x6c>)
     77f0:	781b      	ldrb	r3, [r3, #0]
     77f2:	2b80      	cmp	r3, #128	; 0x80
     77f4:	d00e      	beq.n	7814 <processOrder+0x64>
+				push_back(&s, receivedOrder);
     77f6:	0001      	movs	r1, r0
     77f8:	4809      	ldr	r0, [pc, #36]	; (7820 <processOrder+0x70>)
     77fa:	4b0a      	ldr	r3, [pc, #40]	; (7824 <processOrder+0x74>)
     77fc:	4798      	blx	r3
+				uint8_t terminal_B_conf = TEBID_CQUD_QCONF; 
     77fe:	466b      	mov	r3, sp
     7800:	1ddc      	adds	r4, r3, #7
     7802:	23b5      	movs	r3, #181	; 0xb5
     7804:	7023      	strb	r3, [r4, #0]
+				M_BroadcastMessageToTerminal(terminal_B_conf);
     7806:	20b5      	movs	r0, #181	; 0xb5
     7808:	4b07      	ldr	r3, [pc, #28]	; (7828 <processOrder+0x78>)
     780a:	4798      	blx	r3
+				UART_SAM_To_IO(&terminal_B_conf);
     780c:	0020      	movs	r0, r4
     780e:	4b07      	ldr	r3, [pc, #28]	; (782c <processOrder+0x7c>)
     7810:	4798      	blx	r3
+}
     7812:	e7d3      	b.n	77bc <processOrder+0xc>
+				M_BroadcastMessageToTerminal(tebid_gcmd_open);
     7814:	20b2      	movs	r0, #178	; 0xb2
     7816:	4b04      	ldr	r3, [pc, #16]	; (7828 <processOrder+0x78>)
     7818:	4798      	blx	r3
@@ -14308,21 +14558,25 @@ static void sal_FillSubKey( uint8_t *source, uint8_t *key, uint8_t size)
     782c:	0000deb1 	.word	0x0000deb1
 
 00007830 <M_SendReceivedLoRaMessage>:
+{
     7830:	b510      	push	{r4, lr}
     7832:	b082      	sub	sp, #8
     7834:	466b      	mov	r3, sp
     7836:	1ddc      	adds	r4, r3, #7
     7838:	71d8      	strb	r0, [r3, #7]
+	printf("\n\r Received message %x \n", message);
     783a:	0001      	movs	r1, r0
     783c:	481e      	ldr	r0, [pc, #120]	; (78b8 <M_SendReceivedLoRaMessage+0x88>)
     783e:	4b1f      	ldr	r3, [pc, #124]	; (78bc <M_SendReceivedLoRaMessage+0x8c>)
     7840:	4798      	blx	r3
+	if (M_CheckIdentifier(message))
     7842:	7823      	ldrb	r3, [r4, #0]
     7844:	223f      	movs	r2, #63	; 0x3f
     7846:	0019      	movs	r1, r3
     7848:	4391      	bics	r1, r2
     784a:	29c0      	cmp	r1, #192	; 0xc0
     784c:	d126      	bne.n	789c <M_SendReceivedLoRaMessage+0x6c>
+		switch(message)
     784e:	2bdd      	cmp	r3, #221	; 0xdd
     7850:	d912      	bls.n	7878 <M_SendReceivedLoRaMessage+0x48>
     7852:	2bed      	cmp	r3, #237	; 0xed
@@ -14331,46 +14585,61 @@ static void sal_FillSubKey( uint8_t *source, uint8_t *key, uint8_t size)
     7858:	d208      	bcs.n	786c <M_SendReceivedLoRaMessage+0x3c>
     785a:	2bde      	cmp	r3, #222	; 0xde
     785c:	d110      	bne.n	7880 <M_SendReceivedLoRaMessage+0x50>
+				processOrder(message, TEAID);
     785e:	2140      	movs	r1, #64	; 0x40
     7860:	20de      	movs	r0, #222	; 0xde
     7862:	4b17      	ldr	r3, [pc, #92]	; (78c0 <M_SendReceivedLoRaMessage+0x90>)
     7864:	4798      	blx	r3
+				printf("\n Received order from terminal A \n\r");
     7866:	4817      	ldr	r0, [pc, #92]	; (78c4 <M_SendReceivedLoRaMessage+0x94>)
     7868:	4b14      	ldr	r3, [pc, #80]	; (78bc <M_SendReceivedLoRaMessage+0x8c>)
     786a:	4798      	blx	r3
+		UART_SAM_To_IO(&message);
     786c:	466b      	mov	r3, sp
     786e:	1dd8      	adds	r0, r3, #7
     7870:	4b15      	ldr	r3, [pc, #84]	; (78c8 <M_SendReceivedLoRaMessage+0x98>)
     7872:	4798      	blx	r3
+}
     7874:	b002      	add	sp, #8
     7876:	bd10      	pop	{r4, pc}
+		switch(message)
     7878:	2bd1      	cmp	r3, #209	; 0xd1
     787a:	d2f7      	bcs.n	786c <M_SendReceivedLoRaMessage+0x3c>
     787c:	2b0f      	cmp	r3, #15
     787e:	d9f5      	bls.n	786c <M_SendReceivedLoRaMessage+0x3c>
+				M_BroadcastMessageToTerminal(SEND_MESSAGE_AGAIN);
     7880:	20aa      	movs	r0, #170	; 0xaa
     7882:	4b12      	ldr	r3, [pc, #72]	; (78cc <M_SendReceivedLoRaMessage+0x9c>)
     7884:	4798      	blx	r3
+				return;
     7886:	e7f5      	b.n	7874 <M_SendReceivedLoRaMessage+0x44>
+		switch(message)
     7888:	2bee      	cmp	r3, #238	; 0xee
     788a:	d1f9      	bne.n	7880 <M_SendReceivedLoRaMessage+0x50>
+				processOrder(message, TEBID);
     788c:	2180      	movs	r1, #128	; 0x80
     788e:	20ee      	movs	r0, #238	; 0xee
     7890:	4b0b      	ldr	r3, [pc, #44]	; (78c0 <M_SendReceivedLoRaMessage+0x90>)
     7892:	4798      	blx	r3
+				printf("\n Received order from terminal B \n\r");
     7894:	480e      	ldr	r0, [pc, #56]	; (78d0 <M_SendReceivedLoRaMessage+0xa0>)
     7896:	4b09      	ldr	r3, [pc, #36]	; (78bc <M_SendReceivedLoRaMessage+0x8c>)
     7898:	4798      	blx	r3
+				break;
     789a:	e7e7      	b.n	786c <M_SendReceivedLoRaMessage+0x3c>
+	else if (message == SEND_MESSAGE_AGAIN)
     789c:	2baa      	cmp	r3, #170	; 0xaa
     789e:	d1e9      	bne.n	7874 <M_SendReceivedLoRaMessage+0x44>
+		if (previousMessage)	// Send previous message if its not NULL
     78a0:	4b0c      	ldr	r3, [pc, #48]	; (78d4 <M_SendReceivedLoRaMessage+0xa4>)
     78a2:	681b      	ldr	r3, [r3, #0]
     78a4:	2b00      	cmp	r3, #0
     78a6:	d0e5      	beq.n	7874 <M_SendReceivedLoRaMessage+0x44>
+			M_BroadcastMessageToTerminal(previousMessage[0]);
     78a8:	7818      	ldrb	r0, [r3, #0]
     78aa:	4b08      	ldr	r3, [pc, #32]	; (78cc <M_SendReceivedLoRaMessage+0x9c>)
     78ac:	4798      	blx	r3
+			printf("\n Send message again \n\r");
     78ae:	480a      	ldr	r0, [pc, #40]	; (78d8 <M_SendReceivedLoRaMessage+0xa8>)
     78b0:	4b02      	ldr	r3, [pc, #8]	; (78bc <M_SendReceivedLoRaMessage+0x8c>)
     78b2:	4798      	blx	r3
@@ -14387,25 +14656,32 @@ static void sal_FillSubKey( uint8_t *source, uint8_t *key, uint8_t size)
     78d8:	00018120 	.word	0x00018120
 
 000078dc <ReceivedDataIndication>:
+{
     78dc:	b510      	push	{r4, lr}
+	if ((myPANID.v[1] == ind->SourcePANID.v[1]) && (myPANID.v[0] == ind->SourcePANID.v[0]))
     78de:	4b11      	ldr	r3, [pc, #68]	; (7924 <ReceivedDataIndication+0x48>)
     78e0:	881a      	ldrh	r2, [r3, #0]
     78e2:	8843      	ldrh	r3, [r0, #2]
     78e4:	429a      	cmp	r2, r3
     78e6:	d005      	beq.n	78f4 <ReceivedDataIndication+0x18>
+		printf("Packet received from other Source PAN ID : 0x%x%x\r\n",ind->SourcePANID.v[1],ind->SourcePANID.v[0]);
     78e8:	7882      	ldrb	r2, [r0, #2]
     78ea:	78c1      	ldrb	r1, [r0, #3]
     78ec:	480e      	ldr	r0, [pc, #56]	; (7928 <ReceivedDataIndication+0x4c>)
     78ee:	4b0f      	ldr	r3, [pc, #60]	; (792c <ReceivedDataIndication+0x50>)
     78f0:	4798      	blx	r3
+}
     78f2:	bd10      	pop	{r4, pc}
+		M_SendReceivedLoRaMessage(rxMessage.Payload[0]);
     78f4:	4b0e      	ldr	r3, [pc, #56]	; (7930 <ReceivedDataIndication+0x54>)
     78f6:	689b      	ldr	r3, [r3, #8]
     78f8:	7818      	ldrb	r0, [r3, #0]
     78fa:	4b0e      	ldr	r3, [pc, #56]	; (7934 <ReceivedDataIndication+0x58>)
     78fc:	4798      	blx	r3
+		DemoOutput_HandleMessage();
     78fe:	4b0e      	ldr	r3, [pc, #56]	; (7938 <ReceivedDataIndication+0x5c>)
     7900:	4798      	blx	r3
+		DemoOutput_UpdateTxRx(TxNum, ++RxNum);
     7902:	4b0e      	ldr	r3, [pc, #56]	; (793c <ReceivedDataIndication+0x60>)
     7904:	7818      	ldrb	r0, [r3, #0]
     7906:	4b0e      	ldr	r3, [pc, #56]	; (7940 <ReceivedDataIndication+0x64>)
@@ -14415,10 +14691,17 @@ static void sal_FillSubKey( uint8_t *source, uint8_t *key, uint8_t size)
     790e:	7019      	strb	r1, [r3, #0]
     7910:	4b0c      	ldr	r3, [pc, #48]	; (7944 <ReceivedDataIndication+0x68>)
     7912:	4798      	blx	r3
+{
+	PortGroup *const port_base = port_get_group_from_gpio_pin(gpio_pin);
+	uint32_t pin_mask  = (1UL << (gpio_pin % 32));
+
+	/* Toggle pin output level */
+	port_base->OUTTGL.reg = pin_mask;
     7914:	2280      	movs	r2, #128	; 0x80
     7916:	0312      	lsls	r2, r2, #12
     7918:	4b0b      	ldr	r3, [pc, #44]	; (7948 <ReceivedDataIndication+0x6c>)
     791a:	61da      	str	r2, [r3, #28]
+		DemoOutput_Instruction();
     791c:	4b0b      	ldr	r3, [pc, #44]	; (794c <ReceivedDataIndication+0x70>)
     791e:	4798      	blx	r3
     7920:	e7e7      	b.n	78f2 <ReceivedDataIndication+0x16>
@@ -14436,75 +14719,123 @@ static void sal_FillSubKey( uint8_t *source, uint8_t *key, uint8_t size)
     794c:	00007499 	.word	0x00007499
 
 00007950 <APP_TaskHandler>:
+
+/*********************************************************************//*
+ \brief      Application Task Handler
+ ************************************************************************/
+SYSTEM_TaskStatus_t APP_TaskHandler(void)
+{
     7950:	b510      	push	{r4, lr}
+    Run_Communication();
     7952:	4b02      	ldr	r3, [pc, #8]	; (795c <APP_TaskHandler+0xc>)
     7954:	4798      	blx	r3
+    return SYSTEM_TASK_SUCCESS;
+}
     7956:	2000      	movs	r0, #0
     7958:	bd10      	pop	{r4, pc}
     795a:	46c0      	nop			; (mov r8, r8)
     795c:	00007c51 	.word	0x00007c51
 
 00007960 <ReadMacAddress>:
+* Overview:		    Uses the MAC Address for addressing
+*
+* Note:			    
+**********************************************************************/
+void ReadMacAddress(void)
+{
     7960:	b510      	push	{r4, lr}
+	#if (BOARD == SAMR34_XPLAINED_PRO && defined(__SAMR34J18B__))
+	// only applicable for SAM R34 Xpro with EDBG on-board
+	uint8_t* peui64 = edbg_eui_read_eui64() ;
     7962:	4b06      	ldr	r3, [pc, #24]	; (797c <ReadMacAddress+0x1c>)
     7964:	4798      	blx	r3
     7966:	1dc3      	adds	r3, r0, #7
     7968:	4a05      	ldr	r2, [pc, #20]	; (7980 <ReadMacAddress+0x20>)
     796a:	3801      	subs	r0, #1
+	for (uint8_t i = 0; i < MY_ADDRESS_LENGTH; i++)
+	{
+		myLongAddress[i] = peui64[MY_ADDRESS_LENGTH-i-1] ;
     796c:	7819      	ldrb	r1, [r3, #0]
     796e:	7011      	strb	r1, [r2, #0]
     7970:	3b01      	subs	r3, #1
     7972:	3201      	adds	r2, #1
+	for (uint8_t i = 0; i < MY_ADDRESS_LENGTH; i++)
     7974:	4283      	cmp	r3, r0
     7976:	d1f9      	bne.n	796c <ReadMacAddress+0xc>
+	for (i= 0; i < MY_ADDRESS_LENGTH; i++)
+	{
+		myLongAddress[i] = peui64[MY_ADDRESS_LENGTH-i-1] ;
+	}
+	#endif
+}
     7978:	bd10      	pop	{r4, pc}
     797a:	46c0      	nop			; (mov r8, r8)
     797c:	0000dba1 	.word	0x0000dba1
     7980:	2000001c 	.word	0x2000001c
 
 00007984 <main>:
+{   
     7984:	b570      	push	{r4, r5, r6, lr}
+	system_init();
     7986:	4b16      	ldr	r3, [pc, #88]	; (79e0 <main+0x5c>)
     7988:	4798      	blx	r3
+	delay_init();
     798a:	4b16      	ldr	r3, [pc, #88]	; (79e4 <main+0x60>)
     798c:	4798      	blx	r3
+	UART_init();
     798e:	4b16      	ldr	r3, [pc, #88]	; (79e8 <main+0x64>)
     7990:	4798      	blx	r3
+	UART_cb_init();
     7992:	4b16      	ldr	r3, [pc, #88]	; (79ec <main+0x68>)
     7994:	4798      	blx	r3
+	cpu_irq_enable();
     7996:	2201      	movs	r2, #1
     7998:	4b15      	ldr	r3, [pc, #84]	; (79f0 <main+0x6c>)
     799a:	701a      	strb	r2, [r3, #0]
     799c:	f3bf 8f5f 	dmb	sy
     79a0:	b662      	cpsie	i
+	sio2host_init();
     79a2:	4b14      	ldr	r3, [pc, #80]	; (79f4 <main+0x70>)
     79a4:	4798      	blx	r3
+	ReadMacAddress(); 
     79a6:	4b14      	ldr	r3, [pc, #80]	; (79f8 <main+0x74>)
     79a8:	4798      	blx	r3
+	SystemTimerInit();
     79aa:	4b14      	ldr	r3, [pc, #80]	; (79fc <main+0x78>)
     79ac:	4798      	blx	r3
+    DemoOutput_Greeting();
     79ae:	4b14      	ldr	r3, [pc, #80]	; (7a00 <main+0x7c>)
     79b0:	4798      	blx	r3
+	nvm_init(INT_FLASH);
     79b2:	2000      	movs	r0, #0
     79b4:	4b13      	ldr	r3, [pc, #76]	; (7a04 <main+0x80>)
     79b6:	4798      	blx	r3
+	PDS_Init();
     79b8:	4b13      	ldr	r3, [pc, #76]	; (7a08 <main+0x84>)
     79ba:	4798      	blx	r3
+	freezer_enable_state = PDS_Restore(PDS_FREEZER);
     79bc:	2006      	movs	r0, #6
     79be:	4b13      	ldr	r3, [pc, #76]	; (7a0c <main+0x88>)
     79c0:	4798      	blx	r3
     79c2:	4b13      	ldr	r3, [pc, #76]	; (7a10 <main+0x8c>)
     79c4:	7018      	strb	r0, [r3, #0]
+	Initialize_LoRa(freezer_enable_state);
     79c6:	4b13      	ldr	r3, [pc, #76]	; (7a14 <main+0x90>)
     79c8:	4798      	blx	r3
+	Stack_Init();
     79ca:	4b13      	ldr	r3, [pc, #76]	; (7a18 <main+0x94>)
     79cc:	4798      	blx	r3
+	PDS_Store(PDS_FREEZER);
     79ce:	2006      	movs	r0, #6
     79d0:	4b12      	ldr	r3, [pc, #72]	; (7a1c <main+0x98>)
     79d2:	4798      	blx	r3
+		SYSTEM_RunTasks();
     79d4:	4d12      	ldr	r5, [pc, #72]	; (7a20 <main+0x9c>)
+		Run_Communication();
     79d6:	4c13      	ldr	r4, [pc, #76]	; (7a24 <main+0xa0>)
+		SYSTEM_RunTasks();
     79d8:	47a8      	blx	r5
+		Run_Communication();
     79da:	47a0      	blx	r4
     79dc:	e7fc      	b.n	79d8 <main+0x54>
     79de:	46c0      	nop			; (mov r8, r8)
@@ -14587,7 +14918,7 @@ bool Initialize_LoRa(bool freezer_enable)
 	
 	if (freezer_enable)
     7a64:	2c00      	cmp	r4, #0
-    7a66:	d034      	beq.n	7ad2 <Initialize_LoRa+0x7a>
+    7a66:	d038      	beq.n	7ada <Initialize_LoRa+0x82>
     {
         MiApp_ProtocolInit(NULL, NULL);
     7a68:	2100      	movs	r1, #0
@@ -14675,146 +15006,147 @@ bool Initialize_LoRa(bool freezer_enable)
     7ac6:	484e      	ldr	r0, [pc, #312]	; (7c00 <Initialize_LoRa+0x1a8>)
     7ac8:	4b4e      	ldr	r3, [pc, #312]	; (7c04 <Initialize_LoRa+0x1ac>)
     7aca:	4798      	blx	r3
-	
+		port_base->OUTCLR.reg = pin_mask;
+    7acc:	2280      	movs	r2, #128	; 0x80
+    7ace:	02d2      	lsls	r2, r2, #11
+    7ad0:	4b4d      	ldr	r3, [pc, #308]	; (7c08 <Initialize_LoRa+0x1b0>)
+    7ad2:	615a      	str	r2, [r3, #20]
+	LED_On(LED1);
 	return true;
 }
-    7acc:	2001      	movs	r0, #1
-    7ace:	b005      	add	sp, #20
-    7ad0:	bdf0      	pop	{r4, r5, r6, r7, pc}
-    7ad2:	2280      	movs	r2, #128	; 0x80
-    7ad4:	0312      	lsls	r2, r2, #12
-    7ad6:	4b4c      	ldr	r3, [pc, #304]	; (7c08 <Initialize_LoRa+0x1b0>)
-    7ad8:	619a      	str	r2, [r3, #24]
+    7ad4:	2001      	movs	r0, #1
+    7ad6:	b005      	add	sp, #20
+    7ad8:	bdf0      	pop	{r4, r5, r6, r7, pc}
+		port_base->OUTSET.reg = pin_mask;
+    7ada:	2280      	movs	r2, #128	; 0x80
+    7adc:	0312      	lsls	r2, r2, #12
+    7ade:	4b4a      	ldr	r3, [pc, #296]	; (7c08 <Initialize_LoRa+0x1b0>)
+    7ae0:	619a      	str	r2, [r3, #24]
         MiApp_ProtocolInit(NULL, NULL);
-    7ada:	2100      	movs	r1, #0
-    7adc:	2000      	movs	r0, #0
-    7ade:	4b3f      	ldr	r3, [pc, #252]	; (7bdc <Initialize_LoRa+0x184>)
-    7ae0:	4798      	blx	r3
+    7ae2:	2100      	movs	r1, #0
+    7ae4:	2000      	movs	r0, #0
+    7ae6:	4b3d      	ldr	r3, [pc, #244]	; (7bdc <Initialize_LoRa+0x184>)
+    7ae8:	4798      	blx	r3
 		uint8_t txPower = 0x01 ; // 1 dBm
-    7ae2:	ac01      	add	r4, sp, #4
-    7ae4:	2301      	movs	r3, #1
-    7ae6:	7023      	strb	r3, [r4, #0]
+    7aea:	ac01      	add	r4, sp, #4
+    7aec:	2301      	movs	r3, #1
+    7aee:	7023      	strb	r3, [r4, #0]
 		PHY_SetTxPower(txPower) ;
-    7ae8:	2001      	movs	r0, #1
-    7aea:	4b48      	ldr	r3, [pc, #288]	; (7c0c <Initialize_LoRa+0x1b4>)
-    7aec:	4798      	blx	r3
+    7af0:	2001      	movs	r0, #1
+    7af2:	4b46      	ldr	r3, [pc, #280]	; (7c0c <Initialize_LoRa+0x1b4>)
+    7af4:	4798      	blx	r3
 		txPower = 255 ;
-    7aee:	27ff      	movs	r7, #255	; 0xff
-    7af0:	7027      	strb	r7, [r4, #0]
+    7af6:	27ff      	movs	r7, #255	; 0xff
+    7af8:	7027      	strb	r7, [r4, #0]
 		RADIO_GetAttr(OUTPUT_POWER, (void *)&txPower) ;
-    7af2:	0021      	movs	r1, r4
-    7af4:	2004      	movs	r0, #4
-    7af6:	4e46      	ldr	r6, [pc, #280]	; (7c10 <Initialize_LoRa+0x1b8>)
-    7af8:	47b0      	blx	r6
+    7afa:	0021      	movs	r1, r4
+    7afc:	2004      	movs	r0, #4
+    7afe:	4e44      	ldr	r6, [pc, #272]	; (7c10 <Initialize_LoRa+0x1b8>)
+    7b00:	47b0      	blx	r6
 		printf("\nCurrent Tx output power: %d\r\n", txPower) ;
-    7afa:	7821      	ldrb	r1, [r4, #0]
-    7afc:	4845      	ldr	r0, [pc, #276]	; (7c14 <Initialize_LoRa+0x1bc>)
-    7afe:	4c46      	ldr	r4, [pc, #280]	; (7c18 <Initialize_LoRa+0x1c0>)
-    7b00:	47a0      	blx	r4
+    7b02:	7821      	ldrb	r1, [r4, #0]
+    7b04:	4843      	ldr	r0, [pc, #268]	; (7c14 <Initialize_LoRa+0x1bc>)
+    7b06:	4c44      	ldr	r4, [pc, #272]	; (7c18 <Initialize_LoRa+0x1c0>)
+    7b08:	47a0      	blx	r4
 		uint8_t paBoost = 255 ;
-    7b02:	466b      	mov	r3, sp
-    7b04:	1d5d      	adds	r5, r3, #5
-    7b06:	715f      	strb	r7, [r3, #5]
+    7b0a:	466b      	mov	r3, sp
+    7b0c:	1d5d      	adds	r5, r3, #5
+    7b0e:	715f      	strb	r7, [r3, #5]
 		RADIO_GetAttr(PABOOST, (void *)&paBoost) ;
-    7b08:	0029      	movs	r1, r5
-    7b0a:	2008      	movs	r0, #8
-    7b0c:	47b0      	blx	r6
+    7b10:	0029      	movs	r1, r5
+    7b12:	2008      	movs	r0, #8
+    7b14:	47b0      	blx	r6
 		printf("PA BOOST status: %d\r\n", paBoost) ;
-    7b0e:	7829      	ldrb	r1, [r5, #0]
-    7b10:	4842      	ldr	r0, [pc, #264]	; (7c1c <Initialize_LoRa+0x1c4>)
-    7b12:	47a0      	blx	r4
+    7b16:	7829      	ldrb	r1, [r5, #0]
+    7b18:	4840      	ldr	r0, [pc, #256]	; (7c1c <Initialize_LoRa+0x1c4>)
+    7b1a:	47a0      	blx	r4
 		RadioDataRate_t sf = SF_7 ;
-    7b14:	466b      	mov	r3, sp
-    7b16:	1d9d      	adds	r5, r3, #6
-    7b18:	2307      	movs	r3, #7
-    7b1a:	702b      	strb	r3, [r5, #0]
+    7b1c:	466b      	mov	r3, sp
+    7b1e:	1d9d      	adds	r5, r3, #6
+    7b20:	2307      	movs	r3, #7
+    7b22:	702b      	strb	r3, [r5, #0]
 		PHY_GetAttribute(SPREADING_FACTOR, (void *)&sf) ;
-    7b1c:	0029      	movs	r1, r5
-    7b1e:	2016      	movs	r0, #22
-    7b20:	4e3f      	ldr	r6, [pc, #252]	; (7c20 <Initialize_LoRa+0x1c8>)
-    7b22:	47b0      	blx	r6
+    7b24:	0029      	movs	r1, r5
+    7b26:	2016      	movs	r0, #22
+    7b28:	4e3d      	ldr	r6, [pc, #244]	; (7c20 <Initialize_LoRa+0x1c8>)
+    7b2a:	47b0      	blx	r6
 		printf("Current SF: SF%d\r\n", sf) ;
-    7b24:	7829      	ldrb	r1, [r5, #0]
-    7b26:	483f      	ldr	r0, [pc, #252]	; (7c24 <Initialize_LoRa+0x1cc>)
-    7b28:	47a0      	blx	r4
+    7b2c:	7829      	ldrb	r1, [r5, #0]
+    7b2e:	483d      	ldr	r0, [pc, #244]	; (7c24 <Initialize_LoRa+0x1cc>)
+    7b30:	47a0      	blx	r4
 		PHY_GetAttribute(BANDWIDTH, (void *)&bw) ;
-    7b2a:	466b      	mov	r3, sp
-    7b2c:	1ddd      	adds	r5, r3, #7
-    7b2e:	0029      	movs	r1, r5
-    7b30:	2007      	movs	r0, #7
-    7b32:	47b0      	blx	r6
+    7b32:	466b      	mov	r3, sp
+    7b34:	1ddd      	adds	r5, r3, #7
+    7b36:	0029      	movs	r1, r5
+    7b38:	2007      	movs	r0, #7
+    7b3a:	47b0      	blx	r6
 		printf("Current BW (125kHz=7, 250kHz=8, 500kHz=9): %d\r\n", bw) ;
-    7b34:	7829      	ldrb	r1, [r5, #0]
-    7b36:	483c      	ldr	r0, [pc, #240]	; (7c28 <Initialize_LoRa+0x1d0>)
-    7b38:	47a0      	blx	r4
+    7b3c:	7829      	ldrb	r1, [r5, #0]
+    7b3e:	483a      	ldr	r0, [pc, #232]	; (7c28 <Initialize_LoRa+0x1d0>)
+    7b40:	47a0      	blx	r4
 		srand(PHY_RandomReq());
-    7b3a:	4b29      	ldr	r3, [pc, #164]	; (7be0 <Initialize_LoRa+0x188>)
-    7b3c:	4798      	blx	r3
-    7b3e:	4b29      	ldr	r3, [pc, #164]	; (7be4 <Initialize_LoRa+0x18c>)
-    7b40:	4798      	blx	r3
+    7b42:	4b27      	ldr	r3, [pc, #156]	; (7be0 <Initialize_LoRa+0x188>)
+    7b44:	4798      	blx	r3
+    7b46:	4b27      	ldr	r3, [pc, #156]	; (7be4 <Initialize_LoRa+0x18c>)
+    7b48:	4798      	blx	r3
 		memset((uint8_t *)&invalidIEEEAddr, 0x00, LONG_ADDR_LEN);
-    7b42:	2200      	movs	r2, #0
-    7b44:	2300      	movs	r3, #0
-    7b46:	9202      	str	r2, [sp, #8]
-    7b48:	9303      	str	r3, [sp, #12]
+    7b4a:	2200      	movs	r2, #0
+    7b4c:	2300      	movs	r3, #0
+    7b4e:	9202      	str	r2, [sp, #8]
+    7b50:	9303      	str	r3, [sp, #12]
 		if (0 == memcmp((uint8_t *)&invalidIEEEAddr, (uint8_t *)&myLongAddress, LONG_ADDR_LEN))
-    7b4a:	4e27      	ldr	r6, [pc, #156]	; (7be8 <Initialize_LoRa+0x190>)
-    7b4c:	3208      	adds	r2, #8
-    7b4e:	0031      	movs	r1, r6
-    7b50:	a802      	add	r0, sp, #8
-    7b52:	4d26      	ldr	r5, [pc, #152]	; (7bec <Initialize_LoRa+0x194>)
-    7b54:	47a8      	blx	r5
-    7b56:	0004      	movs	r4, r0
+    7b52:	4e25      	ldr	r6, [pc, #148]	; (7be8 <Initialize_LoRa+0x190>)
+    7b54:	3208      	adds	r2, #8
+    7b56:	0031      	movs	r1, r6
+    7b58:	a802      	add	r0, sp, #8
+    7b5a:	4d24      	ldr	r5, [pc, #144]	; (7bec <Initialize_LoRa+0x194>)
+    7b5c:	47a8      	blx	r5
+    7b5e:	0004      	movs	r4, r0
 		memset((uint8_t *)&invalidIEEEAddr, 0xFF, LONG_ADDR_LEN);
-    7b58:	2201      	movs	r2, #1
-    7b5a:	4252      	negs	r2, r2
-    7b5c:	17d3      	asrs	r3, r2, #31
-    7b5e:	9202      	str	r2, [sp, #8]
-    7b60:	9303      	str	r3, [sp, #12]
+    7b60:	2201      	movs	r2, #1
+    7b62:	4252      	negs	r2, r2
+    7b64:	17d3      	asrs	r3, r2, #31
+    7b66:	9202      	str	r2, [sp, #8]
+    7b68:	9303      	str	r3, [sp, #12]
 		if (0 == memcmp((uint8_t *)&invalidIEEEAddr, (uint8_t *)&myLongAddress, LONG_ADDR_LEN))
-    7b62:	3209      	adds	r2, #9
-    7b64:	0031      	movs	r1, r6
-    7b66:	a802      	add	r0, sp, #8
-    7b68:	47a8      	blx	r5
-    7b6a:	2800      	cmp	r0, #0
-    7b6c:	d023      	beq.n	7bb6 <Initialize_LoRa+0x15e>
+    7b6a:	3209      	adds	r2, #9
+    7b6c:	0031      	movs	r1, r6
+    7b6e:	a802      	add	r0, sp, #8
+    7b70:	47a8      	blx	r5
+    7b72:	2800      	cmp	r0, #0
+    7b74:	d01f      	beq.n	7bb6 <Initialize_LoRa+0x15e>
 		if (invalidIEEEAddrFlag)
-    7b6e:	2c00      	cmp	r4, #0
-    7b70:	d021      	beq.n	7bb6 <Initialize_LoRa+0x15e>
+    7b76:	2c00      	cmp	r4, #0
+    7b78:	d01d      	beq.n	7bb6 <Initialize_LoRa+0x15e>
 		PHY_SetIEEEAddr((uint8_t *)&myLongAddress);
-    7b72:	481d      	ldr	r0, [pc, #116]	; (7be8 <Initialize_LoRa+0x190>)
-    7b74:	4b1f      	ldr	r3, [pc, #124]	; (7bf4 <Initialize_LoRa+0x19c>)
-    7b76:	4798      	blx	r3
+    7b7a:	481b      	ldr	r0, [pc, #108]	; (7be8 <Initialize_LoRa+0x190>)
+    7b7c:	4b1d      	ldr	r3, [pc, #116]	; (7bf4 <Initialize_LoRa+0x19c>)
+    7b7e:	4798      	blx	r3
         MiApp_ConnectionMode(ENABLE_ALL_CONN);
-    7b78:	2000      	movs	r0, #0
-    7b7a:	4b2c      	ldr	r3, [pc, #176]	; (7c2c <Initialize_LoRa+0x1d4>)
-    7b7c:	4798      	blx	r3
-        if( MiApp_Set(CHANNEL, &myChannel) == false )
-    7b7e:	492c      	ldr	r1, [pc, #176]	; (7c30 <Initialize_LoRa+0x1d8>)
     7b80:	2000      	movs	r0, #0
-    7b82:	4b2c      	ldr	r3, [pc, #176]	; (7c34 <Initialize_LoRa+0x1dc>)
+    7b82:	4b2a      	ldr	r3, [pc, #168]	; (7c2c <Initialize_LoRa+0x1d4>)
     7b84:	4798      	blx	r3
-    7b86:	2800      	cmp	r0, #0
-    7b88:	d01f      	beq.n	7bca <Initialize_LoRa+0x172>
+        if( MiApp_Set(CHANNEL, &myChannel) == false )
+    7b86:	492a      	ldr	r1, [pc, #168]	; (7c30 <Initialize_LoRa+0x1d8>)
+    7b88:	2000      	movs	r0, #0
+    7b8a:	4b2a      	ldr	r3, [pc, #168]	; (7c34 <Initialize_LoRa+0x1dc>)
+    7b8c:	4798      	blx	r3
+    7b8e:	2800      	cmp	r0, #0
+    7b90:	d01b      	beq.n	7bca <Initialize_LoRa+0x172>
 		MiApp_StartConnection(START_CONN_DIRECT, 10, (1L << myChannel), Connection_Confirm);
-    7b8a:	4b29      	ldr	r3, [pc, #164]	; (7c30 <Initialize_LoRa+0x1d8>)
-    7b8c:	781b      	ldrb	r3, [r3, #0]
-    7b8e:	2201      	movs	r2, #1
-    7b90:	409a      	lsls	r2, r3
-    7b92:	4b29      	ldr	r3, [pc, #164]	; (7c38 <Initialize_LoRa+0x1e0>)
-    7b94:	210a      	movs	r1, #10
-    7b96:	2000      	movs	r0, #0
-    7b98:	4c28      	ldr	r4, [pc, #160]	; (7c3c <Initialize_LoRa+0x1e4>)
-    7b9a:	47a0      	blx	r4
+    7b92:	4b27      	ldr	r3, [pc, #156]	; (7c30 <Initialize_LoRa+0x1d8>)
+    7b94:	781b      	ldrb	r3, [r3, #0]
+    7b96:	2201      	movs	r2, #1
+    7b98:	409a      	lsls	r2, r3
+    7b9a:	4b27      	ldr	r3, [pc, #156]	; (7c38 <Initialize_LoRa+0x1e0>)
+    7b9c:	210a      	movs	r1, #10
+    7b9e:	2000      	movs	r0, #0
+    7ba0:	4c26      	ldr	r4, [pc, #152]	; (7c3c <Initialize_LoRa+0x1e4>)
+    7ba2:	47a0      	blx	r4
 		DumpConnection(0xFF);
-    7b9c:	20ff      	movs	r0, #255	; 0xff
-    7b9e:	4b28      	ldr	r3, [pc, #160]	; (7c40 <Initialize_LoRa+0x1e8>)
-    7ba0:	4798      	blx	r3
-		port_base->OUTCLR.reg = pin_mask;
-    7ba2:	2280      	movs	r2, #128	; 0x80
-    7ba4:	0312      	lsls	r2, r2, #12
-    7ba6:	4b18      	ldr	r3, [pc, #96]	; (7c08 <Initialize_LoRa+0x1b0>)
-    7ba8:	615a      	str	r2, [r3, #20]
+    7ba4:	20ff      	movs	r0, #255	; 0xff
+    7ba6:	4b26      	ldr	r3, [pc, #152]	; (7c40 <Initialize_LoRa+0x1e8>)
+    7ba8:	4798      	blx	r3
         DemoOutput_Instruction();
     7baa:	4b26      	ldr	r3, [pc, #152]	; (7c44 <Initialize_LoRa+0x1ec>)
     7bac:	4798      	blx	r3
@@ -14834,13 +15166,13 @@ bool Initialize_LoRa(bool freezer_enable)
 			for(i = 0; i<MY_ADDRESS_LENGTH; i++)
     7bc4:	42b4      	cmp	r4, r6
     7bc6:	d1fa      	bne.n	7bbe <Initialize_LoRa+0x166>
-    7bc8:	e7d3      	b.n	7b72 <Initialize_LoRa+0x11a>
+    7bc8:	e7d7      	b.n	7b7a <Initialize_LoRa+0x122>
             DemoOutput_ChannelError(myChannel);
     7bca:	4b19      	ldr	r3, [pc, #100]	; (7c30 <Initialize_LoRa+0x1d8>)
     7bcc:	7818      	ldrb	r0, [r3, #0]
     7bce:	4b1f      	ldr	r3, [pc, #124]	; (7c4c <Initialize_LoRa+0x1f4>)
     7bd0:	4798      	blx	r3
-    7bd2:	e7da      	b.n	7b8a <Initialize_LoRa+0x132>
+    7bd2:	e7de      	b.n	7b92 <Initialize_LoRa+0x13a>
     7bd4:	000078dd 	.word	0x000078dd
     7bd8:	0000b375 	.word	0x0000b375
     7bdc:	0000ae89 	.word	0x0000ae89
@@ -31702,9 +32034,6 @@ void UART_IO_rx_cb(struct usart_module *const usart_module)
     deac:	0000de7d 	.word	0x0000de7d
 
 0000deb0 <UART_SAM_To_IO>:
-{
-	usart_write_buffer_wait(&UART_LoRa, data, 1);
-}
 
 void UART_SAM_To_IO(uint8_t* data)
 {
@@ -31721,30 +32050,48 @@ void UART_SAM_To_IO(uint8_t* data)
     dec4:	000060bd 	.word	0x000060bd
 
 0000dec8 <push_back>:
+	else
+	return 0;
+}
+
+
+void push_back(struct queStruct* s,uint8_t data) {
     dec8:	b570      	push	{r4, r5, r6, lr}
     deca:	0004      	movs	r4, r0
     decc:	000d      	movs	r5, r1
+	if ((s.rear + 1) % MAX_QUEUE_SIZE == s.front)
     dece:	7900      	ldrb	r0, [r0, #4]
     ded0:	3001      	adds	r0, #1
     ded2:	2103      	movs	r1, #3
     ded4:	4b09      	ldr	r3, [pc, #36]	; (defc <push_back+0x34>)
     ded6:	4798      	blx	r3
     ded8:	78e3      	ldrb	r3, [r4, #3]
+	if (isFull(*s)) {
     deda:	4299      	cmp	r1, r3
     dedc:	d00c      	beq.n	def8 <push_back+0x30>
+		return;
+		} else if (isEmpty(*s)) {
+		s->front = 0;
+		s->rear = 0;
+		} else {
+		s->rear = (s->rear + 1) % MAX_QUEUE_SIZE;
     dede:	7920      	ldrb	r0, [r4, #4]
     dee0:	3001      	adds	r0, #1
     dee2:	2103      	movs	r1, #3
     dee4:	4b05      	ldr	r3, [pc, #20]	; (defc <push_back+0x34>)
     dee6:	4798      	blx	r3
     dee8:	7121      	strb	r1, [r4, #4]
+	}
+	s->queue[s->rear] = data;
     deea:	23ff      	movs	r3, #255	; 0xff
     deec:	4019      	ands	r1, r3
     deee:	5465      	strb	r5, [r4, r1]
+	printf("Added %d\n", data);
     def0:	0029      	movs	r1, r5
     def2:	4803      	ldr	r0, [pc, #12]	; (df00 <push_back+0x38>)
     def4:	4b03      	ldr	r3, [pc, #12]	; (df04 <push_back+0x3c>)
     def6:	4798      	blx	r3
+}
     def8:	bd70      	pop	{r4, r5, r6, pc}
     defa:	46c0      	nop			; (mov r8, r8)
     defc:	000137ad 	.word	0x000137ad
@@ -31752,23 +32099,43 @@ void UART_SAM_To_IO(uint8_t* data)
     df04:	00016ce9 	.word	0x00016ce9
 
 0000df08 <pop_front>:
+
+
+uint8_t pop_front(struct queStruct* s) {
     df08:	b570      	push	{r4, r5, r6, lr}
     df0a:	0004      	movs	r4, r0
+	uint8_t data;
+	if (isEmpty(*s)) {
+		//printf("Queue is empty.\n");
+		return -1;
+		} else if (s->front == s->rear) {
     df0c:	78c0      	ldrb	r0, [r0, #3]
     df0e:	7923      	ldrb	r3, [r4, #4]
     df10:	4283      	cmp	r3, r0
     df12:	d007      	beq.n	df24 <pop_front+0x1c>
+		data = s->queue[s->front];
+		s->front = -1;
+		s->rear = -1;
+		} else {
+		data = s->queue[s->front];
     df14:	5c25      	ldrb	r5, [r4, r0]
+		s->front = (s->front + 1) % MAX_QUEUE_SIZE;
     df16:	3001      	adds	r0, #1
     df18:	2103      	movs	r1, #3
     df1a:	4b05      	ldr	r3, [pc, #20]	; (df30 <pop_front+0x28>)
     df1c:	4798      	blx	r3
     df1e:	70e1      	strb	r1, [r4, #3]
+	}
+	return data;
+}
     df20:	0028      	movs	r0, r5
     df22:	bd70      	pop	{r4, r5, r6, pc}
+		data = s->queue[s->front];
     df24:	5c25      	ldrb	r5, [r4, r0]
+		s->front = -1;
     df26:	23ff      	movs	r3, #255	; 0xff
     df28:	70e3      	strb	r3, [r4, #3]
+		s->rear = -1;
     df2a:	7123      	strb	r3, [r4, #4]
     df2c:	e7f8      	b.n	df20 <pop_front+0x18>
     df2e:	46c0      	nop			; (mov r8, r8)
