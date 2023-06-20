@@ -68,19 +68,6 @@ void DemoOutput_Greeting(void);
 ********************************************************************/
 void DemoOutput_Channel(uint8_t channel, uint8_t step);
 
-/*********************************************************************
-* Function: void DemoOutput_Instruction( void )
-*
-* Overview: Prints demo instructions
-*
-* PreCondition: None
-*
-* Input:  None
-*
-* Output: None
-*
-********************************************************************/
-void DemoOutput_Instruction(void);
 
 /*********************************************************************
 * Function: void DemoOutput_HandleMessage( void )
@@ -108,20 +95,7 @@ void DemoOutput_HandleMessage(void);
 * Output: None
 *
 ********************************************************************/
-void DemoOutput_UpdateTxRx(uint8_t TxNum, uint8_t RxNum);
 
-/*********************************************************************
-* Function: void DemoOutput_ChannelError( uint8_t channel )
-*
-* Overview: Outputs channel error message
-*
-* PreCondition: None
-*
-* Input:  None
-*
-* Output: None
-*
-********************************************************************/
 void DemoOutput_ChannelError(uint8_t channel);
 
 /*********************************************************************
