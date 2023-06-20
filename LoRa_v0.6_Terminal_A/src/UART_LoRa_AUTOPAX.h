@@ -7,8 +7,8 @@
 #include "sio2host.h"
 
 //-------- DEFINES -----------------------------//
-#define LoRa_UART_RX_BUFFER_LENGTH   1
-#define AUTOPAX_UART_RX_BUFFER_LENGTH   1
+#define LoRa_UART_RX_BUFFER_LENGTH   4 //Changed from 1
+#define AUTOPAX_UART_RX_BUFFER_LENGTH   4 //Changed from 1
 
 #define UART_BAUD 115200
 

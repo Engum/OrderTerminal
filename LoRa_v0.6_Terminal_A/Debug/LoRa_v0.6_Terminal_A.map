@@ -202,7 +202,7 @@ timer_multiplier    0x1               ../src/ASF/thirdparty/wireless/services/co
 _rtc_instance       0x4               src/ASF/sam0/drivers/rtc/rtc_sam_l_c/rtc_count.o
 IEEESeqNum          0x1               src/ASF/thirdparty/wireless/LoRa_P2P/source/mimac/mimac.o
 rtc_instance        0x38              src/ASF/thirdparty/wireless/services/sleep_mgr/sam0/sleep_mgr.o
-rx_buffer_LoRa      0x1               src/LoRa_P2P_Terminal.o
+rx_buffer_LoRa      0x4               src/LoRa_P2P_Terminal.o
 packet              0xff              src/ASF/thirdparty/wireless/LoRa_P2P/source/mimac/mimac.o
 LatestConnection    0x1               src/ASF/thirdparty/wireless/LoRa_P2P/source/miwi_p2p_star/miwi_p2p.o
 wdt_early_warning_callback
@@ -279,7 +279,7 @@ radioCallbackMask   0x1               ../src/ASF/thirdparty/wireless/lorawan/lib
 received_mic_values
                     0x4               src/ASF/thirdparty/wireless/LoRa_P2P/source/mimac/mimac.o
 ssd1306_slave       0x3               src/ASF/common2/components/display/ssd1306/ssd1306.o
-rx_buffer_IO        0x1               src/LoRa_P2P_Terminal.o
+rx_buffer_IO        0x4               src/LoRa_P2P_Terminal.o
 ActiveScanResults   0x40              src/ASF/thirdparty/wireless/LoRa_P2P/source/miwi_p2p_star/miwi_p2p.o
 slave               0x3               src/ASF/thirdparty/wireless/lorawan/hal/src/radio_driver_hal.o
 AckBuffer           0xa               src/ASF/thirdparty/wireless/LoRa_P2P/source/mimac/mimac.o
@@ -25518,78 +25518,77 @@ LOAD c:/program files (x86)/atmel/studio/7.0/toolchain/arm/arm-gnu-toolchain/bin
  COMMON         0x20001f60        0x8 src/demo_output.o
                 0x20001f60                PUSH_BUTTON_pressed
                 0x20001f64                PUSH_BUTTON_press_time
- COMMON         0x20001f68       0x70 src/LoRa_P2P_Terminal.o
+ COMMON         0x20001f68       0x74 src/LoRa_P2P_Terminal.o
                 0x20001f68                rx_buffer_LoRa
-                0x20001f69                i
-                0x20001f6c                UART_IO
-                0x20001fa0                rx_buffer_IO
-                0x20001fa4                UART_LoRa
- COMMON         0x20001fd8      0x17b src/ASF/thirdparty/wireless/LoRa_P2P/source/mimac/mimac.o
-                0x20001fd8                AckSeqNum
-                0x20001fd9                IEEESeqNum
-                0x20001fdc                packet
-                0x200020dc                myNetworkAddress
-                0x200020e0                calculated_mic_values
-                0x200020e4                MACInitParams
-                0x200020ec                InitVect_in
-                0x200020fc                MACdatatransParam
-                0x20002108                CTR_mic
-                0x20002118                final_mic_value
-                0x20002128                dataStatus
-                0x2000212c                OutgoingFrameCounter
-                0x20002130                CBC_mic
-                0x20002140                received_mic_values
-                0x20002144                AckBuffer
-                0x20002150                MAC_PANID
-                0x20002152                MACCurrentChannel
- *fill*         0x20002153        0x1 
- COMMON         0x20002154      0x512 src/ASF/thirdparty/wireless/LoRa_P2P/source/mimac/phy/sx1276/phy.o
-                0x20002154                DataRequestBuffer
-                0x20002253                callbackBackup
-                0x20002254                DevIEEEaddr
-                0x2000225c                RxBuffer
-                0x20002660                DevPanId
-                0x20002664                DevShortAddress
- *fill*         0x20002666        0x2 
- COMMON         0x20002668      0x304 src/ASF/thirdparty/wireless/LoRa_P2P/source/miwi_p2p_star/miwi_p2p.o
-                0x20002668                LatestConnection
-                0x2000266c                ConnectionTable
-                0x200026a0                tick4
-                0x200026a4                MACRxPacket
-                0x200026b8                myConnectionIndex_in_PanCo
-                0x200026b9                P2PCapacityInfo
-                0x200026bc                nvmDelayTick
-                0x200026c0                myPANID
-                0x200026c4                EstConfCallback
-                0x200026c8                temp_bit
-                0x200026c9                conn_size
-                0x200026ca                FW_Stat
-                0x200026cc                IncomingFrameCounter
-                0x200026e0                MyindexinPC
-                0x200026e4                P2PStatus
-                0x200026e8                indirectMessages
-                0x20002910                tick1
-                0x20002914                ActiveScanResults
-                0x20002954                rxMessage
-                0x20002964                ActiveScanResultIndex
-                0x20002968                DataTxAckTimer
- COMMON         0x2000296c        0x6 src/ASF/thirdparty/wireless/LoRa_P2P/source/sys/sysTimer.o
-                0x2000296c                SysTimerIrqCount
-                0x20002970                timerExtension1
-                0x20002971                timerExtension2
- *fill*         0x20002972        0x2 
- COMMON         0x20002974        0x3 src/ASF/thirdparty/wireless/lorawan/hal/src/radio_driver_hal.o
-                0x20002974                slave
- *fill*         0x20002977        0x1 
- COMMON         0x20002978       0x38 src/ASF/thirdparty/wireless/lorawan/hal/src/sleep_timer/sam0/sleep_timer.o
-                0x20002978                rtc
- COMMON         0x200029b0      0x210 src/ASF/thirdparty/wireless/lorawan/regparams/multiband/src/lorawan_multiband.o
-                0x200029b0                regTimerId
-                0x200029b4                RegParams
- COMMON         0x20002bc0       0x14 src/ASF/thirdparty/wireless/lorawan/services/aes/src/hw/sam0/aes_engine.o
-                0x20002bc0                g_aes_cfg
-                0x20002bcc                aes_instance
- *fill*         0x20002bd4        0x4 
+                0x20001f6c                i
+                0x20001f70                UART_IO
+                0x20001fa4                rx_buffer_IO
+                0x20001fa8                UART_LoRa
+ COMMON         0x20001fdc      0x17b src/ASF/thirdparty/wireless/LoRa_P2P/source/mimac/mimac.o
+                0x20001fdc                AckSeqNum
+                0x20001fdd                IEEESeqNum
+                0x20001fe0                packet
+                0x200020e0                myNetworkAddress
+                0x200020e4                calculated_mic_values
+                0x200020e8                MACInitParams
+                0x200020f0                InitVect_in
+                0x20002100                MACdatatransParam
+                0x2000210c                CTR_mic
+                0x2000211c                final_mic_value
+                0x2000212c                dataStatus
+                0x20002130                OutgoingFrameCounter
+                0x20002134                CBC_mic
+                0x20002144                received_mic_values
+                0x20002148                AckBuffer
+                0x20002154                MAC_PANID
+                0x20002156                MACCurrentChannel
+ *fill*         0x20002157        0x1 
+ COMMON         0x20002158      0x512 src/ASF/thirdparty/wireless/LoRa_P2P/source/mimac/phy/sx1276/phy.o
+                0x20002158                DataRequestBuffer
+                0x20002257                callbackBackup
+                0x20002258                DevIEEEaddr
+                0x20002260                RxBuffer
+                0x20002664                DevPanId
+                0x20002668                DevShortAddress
+ *fill*         0x2000266a        0x2 
+ COMMON         0x2000266c      0x304 src/ASF/thirdparty/wireless/LoRa_P2P/source/miwi_p2p_star/miwi_p2p.o
+                0x2000266c                LatestConnection
+                0x20002670                ConnectionTable
+                0x200026a4                tick4
+                0x200026a8                MACRxPacket
+                0x200026bc                myConnectionIndex_in_PanCo
+                0x200026bd                P2PCapacityInfo
+                0x200026c0                nvmDelayTick
+                0x200026c4                myPANID
+                0x200026c8                EstConfCallback
+                0x200026cc                temp_bit
+                0x200026cd                conn_size
+                0x200026ce                FW_Stat
+                0x200026d0                IncomingFrameCounter
+                0x200026e4                MyindexinPC
+                0x200026e8                P2PStatus
+                0x200026ec                indirectMessages
+                0x20002914                tick1
+                0x20002918                ActiveScanResults
+                0x20002958                rxMessage
+                0x20002968                ActiveScanResultIndex
+                0x2000296c                DataTxAckTimer
+ COMMON         0x20002970        0x6 src/ASF/thirdparty/wireless/LoRa_P2P/source/sys/sysTimer.o
+                0x20002970                SysTimerIrqCount
+                0x20002974                timerExtension1
+                0x20002975                timerExtension2
+ *fill*         0x20002976        0x2 
+ COMMON         0x20002978        0x3 src/ASF/thirdparty/wireless/lorawan/hal/src/radio_driver_hal.o
+                0x20002978                slave
+ *fill*         0x2000297b        0x1 
+ COMMON         0x2000297c       0x38 src/ASF/thirdparty/wireless/lorawan/hal/src/sleep_timer/sam0/sleep_timer.o
+                0x2000297c                rtc
+ COMMON         0x200029b4      0x210 src/ASF/thirdparty/wireless/lorawan/regparams/multiband/src/lorawan_multiband.o
+                0x200029b4                regTimerId
+                0x200029b8                RegParams
+ COMMON         0x20002bc4       0x14 src/ASF/thirdparty/wireless/lorawan/services/aes/src/hw/sam0/aes_engine.o
+                0x20002bc4                g_aes_cfg
+                0x20002bd0                aes_instance
  COMMON         0x20002bd8      0x1a8 src/ASF/thirdparty/wireless/lorawan/services/sw_timer/src/sw_timer.o
                 0x20002bd8                swTimestamp
                 0x20002be8                swTimers
