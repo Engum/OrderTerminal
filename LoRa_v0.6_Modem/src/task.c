@@ -263,6 +263,7 @@ bool Initialize_LoRa(bool freezer_enable)
         // Set default channel
         if( MiApp_Set(CHANNEL, &myChannel) == false )
         {
+			DemoOutput_ChannelError(myChannel);
         }
             /*******************************************************************/
             // If no network can be found and join, we need to start a new 
