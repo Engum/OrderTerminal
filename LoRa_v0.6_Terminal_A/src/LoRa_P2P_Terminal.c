@@ -91,7 +91,10 @@ void ReceivedDataIndication (RECEIVED_MESSAGE *ind)
 	/*******************************************************************/
 	if ((myPANID.v[1] == ind->SourcePANID.v[1]) && (myPANID.v[0] == ind->SourcePANID.v[0]))
 	{	
-		T_SendReceivedLoRaMessage(rxMessage.Payload[0]);	
+			for (int j = 0; j < rxMessage.PayloadSize; j++)
+			{
+				T_SendReceivedLoRaMessage(rxMessage.Payload[j]);
+			}
 		
 		#if defined(ENABLE_CONSOLE)
 		DemoOutput_HandleMessage();
