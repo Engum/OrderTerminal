@@ -38,9 +38,6 @@
 #include "LoRa_P2P_Terminal.h"
 #include "UART_LoRa_AUTOPAX.h"
 
-#if defined(ENABLE_SLEEP_FEATURE)
-#include "sleep_mgr.h"
-#endif
 #include "sw_timer.h"
 #include "phy.h"
 /************************** VARIABLES ************************************/
@@ -179,9 +176,7 @@ bool Initialize_LoRa(bool freezer_enable)
 			}
 		}
 		PHY_SetIEEEAddr((uint8_t *)&myLongAddress);
-#if defined(PROTOCOL_P2P)  
-		DemoOutput_Instruction();
-#endif
+
 	}
 	else
 	{
@@ -311,10 +306,7 @@ bool Initialize_LoRa(bool freezer_enable)
 #endif
 
         // Turn on LED 1 to indicate connection established
-		LED_On(LED0);
-#if defined(PROTOCOL_P2P)
-        DemoOutput_Instruction();
-#endif  
+		LED_On(LED0); 
 	 
     printf("\n Satt opp nettverk \r\n");
 	}
