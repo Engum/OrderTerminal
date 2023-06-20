@@ -91,15 +91,16 @@ void ReceivedDataIndication (RECEIVED_MESSAGE *ind)
 	/*******************************************************************/
 	if ((myPANID.v[1] == ind->SourcePANID.v[1]) && (myPANID.v[0] == ind->SourcePANID.v[0]))
 	{	
-		T_SendReceivedLoRaMessage(rxMessage.Payload[0]);	
+			for (int j = 0; j < rxMessage.PayloadSize; j++)
+			{
+				T_SendReceivedLoRaMessage(rxMessage.Payload[j]);
+			}
 		
 		#if defined(ENABLE_CONSOLE)
 		DemoOutput_HandleMessage();
 		#endif
-		DemoOutput_UpdateTxRx(TxNum, ++RxNum);
 		// Toggle LED2 to indicate receiving a packet.
 		LED_Toggle(LED0);
-		DemoOutput_Instruction();	
 	}
 	else
 	{
@@ -147,8 +148,11 @@ void T_BroadcastMessageToFerry(uint8_t signal)
 
 // Send received UART message with LoRa
 void T_SendReceivedUARTMessage(uint8_t message)
-{
-	printf("\n\r Message received: %x", message);
+{	
+	#ifdef DEBUG
+		printf("\n\r Message received: %x", message);
+	#endif
+	
 	switch(message)
 	{		
 		case TEAID_GSTATE_TIMEOUT:
@@ -203,7 +207,11 @@ void T_SendReceivedUARTMessage(uint8_t message)
 			break;
 		
 		case PASSENGERS_FOUR:
-			printf("\n Recevied UART message from IO-machine \n\r");
+			
+			#ifdef DEBUG
+				printf("\n Recevied UART message from IO-machine \n\r");
+			#endif
+			
 			break;
 		
 		case PASSENGERS_SIX:
@@ -249,7 +257,9 @@ void T_SendReceivedUARTMessage(uint8_t message)
 // Send received LoRa message with UART
 void T_SendReceivedLoRaMessage(uint8_t message)
 {
-	printf("\n\r Received LoRa message: %x", message);
+	#ifdef DEBUG
+		printf("\n\r Received LoRa message: %x", message);
+	#endif
 	// Checks if received message is meant for terminal A
 	if (T_A_CheckIdentifier(message))
 	{		
@@ -262,21 +272,30 @@ void T_SendReceivedLoRaMessage(uint8_t message)
 			case TEAID_GCMD_OPEN:
 				ferryState = TEAID;
 				UART_SAM_To_RPi(&message);
-				printf("\n Open gate at terminal A \n\r");
+				#ifdef DEBUG
+					printf("\n Open gate at terminal A \n\r");
+				#endif
+				
 				break;
 				
 			case TEAID_GCMD_CLOSE:
 				orderStatus = false;
 				port_pin_set_output_level(LED_BUTTON, false);
 				UART_SAM_To_RPi(&message);
-				printf("\n Close gate at terminal A");
+				#ifdef DEBUG
+					printf("\n Close gate at terminal A");
+				#endif
+				
 				break;
 				
 			case TEAID_GCMD_PAUSE:
 				break;
 				
 			case TEAID_CQUD_QCONF:
-				printf("\n Order confirmed, wait for ferry to arrive");
+				
+				#ifdef DEBUG
+					printf("\n Order confirmed, wait for ferry to arrive");
+				#endif
 				break;;
 				
 			case TEAID_FREQS_REQCNT:
@@ -326,7 +345,9 @@ void T_SendReceivedLoRaMessage(uint8_t message)
 		if (previousMessage)	// Send previous message if its not NULL
 		{
 			T_BroadcastMessageToFerry(previousMessage[0]);
-			printf("\n Send message again \n\r");
+			#ifdef DEBUG
+				printf("\n Send message again \n\r");
+			#endif
 		}
 	}
 	else if (T_B_CheckIdentifier(message))
@@ -336,7 +357,11 @@ void T_SendReceivedLoRaMessage(uint8_t message)
 			case TEBID_GCMD_OPEN:			// Update screen
 				ferryState = TEBID;
 				UART_SAM_To_RPi(&message);
-				printf("\n Ferry is at terminal B \n\r");
+				
+				#ifdef DEBUG
+					printf("\n Ferry is at terminal B \n\r");
+				#endif
+				
 				break;
 				
 			case TEBID_GCMD_CLOSE:
@@ -346,7 +371,11 @@ void T_SendReceivedLoRaMessage(uint8_t message)
 			case TEBID_FPROC_BCOMP:			// Update screen
 				ferryState = IN_TRANSIT;
 				UART_SAM_To_RPi(&message);
-				printf("\n Ferry is leaving terminal B");
+				
+				#ifdef DEBUG
+					printf("\n Ferry is leaving terminal B");
+				#endif
+				
 				break;
 			
 			default:						// Do nothing
