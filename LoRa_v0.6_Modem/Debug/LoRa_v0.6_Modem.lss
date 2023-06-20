@@ -14476,6 +14476,7 @@ void M_SendReceivedUARTMessage(uint8_t message)
     777a:	4798      	blx	r3
     777c:	e7cf      	b.n	771e <M_SendReceivedUARTMessage+0x32>
     777e:	46c0      	nop			; (mov r8, r8)
+    7780:	00018240 	.word	0x00018240
     7784:	00016df1 	.word	0x00016df1
     7788:	00018084 	.word	0x00018084
     778c:	200000fe 	.word	0x200000fe
