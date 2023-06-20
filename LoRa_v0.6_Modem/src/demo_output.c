@@ -48,11 +48,6 @@ MIWI_TICK PUSH_BUTTON_press_time;
 
 void DemoOutput_Greeting(void)
 {    
-#if defined (ENABLE_LCD)
-	#if defined(PROTOCOL_P2P)
-		LCDDisplay((char *)"Simple LoRa P2P Demo on \n SAMR34 Node ", 0, true);
-	#endif
-#endif
     #if defined (ENABLE_CONSOLE)
         #if defined(PROTOCOL_P2P)
 			printf("\n\r-----------------------------------------------------\n\r-----------------------------------------------------");
@@ -88,20 +83,10 @@ void DemoOutput_Greeting(void)
     #endif 
 }        
 
-void demo_output_freezer_options(void)
-{ 
-#if defined (ENABLE_LCD)
-	LCDDisplay((char *)"SW: Use Nwk Freezer \nPress in 5 sec", 0, false);	
-	delay_ms(1000);
-#endif
-}
 void DemoOutput_Channel(uint8_t channel, uint8_t Step)
 {
     if( Step == 0 )
     {
-#if defined (ENABLE_LCD)       
-        LCDDisplay((char *)"Connecting Peer on \n Channel ", channel, true);
-#endif
 #if defined (ENABLE_CONSOLE)
         #if !defined(MIWIKIT)
         printf("\r\nConnecting Peer on Channel ");
@@ -112,9 +97,6 @@ void DemoOutput_Channel(uint8_t channel, uint8_t Step)
     }
     else
     { 
-#if defined (ENABLE_LCD)
-        LCDDisplay((char *)"Connected Peer on \n Channel ", channel, true);
-#endif
 #if defined (ENABLE_CONSOLE)
         #if !defined(MIWIKIT)
         printf("\r\nConnected Peer on Channel ");
@@ -124,17 +106,6 @@ void DemoOutput_Channel(uint8_t channel, uint8_t Step)
 #endif
     }
 }    
-
-void DemoOutput_Instruction(void)
-{
-#if defined (ENABLE_LCD)
-	#if defined (EXT_BOARD_OLED1_XPLAINED_PRO)
-		LCDDisplay((char *)"SW     : Broadcast \nBUTTON1: Unicast", 0, false);
-	#else
-		LCDDisplay((char *)"SW: Broadcast", 0, false);
-	#endif
-#endif
-}
 
 
 void DemoOutput_HandleMessage(void)
@@ -180,12 +151,7 @@ void DemoOutput_HandleMessage(void)
 	printf("\r\n");    
 } 
 
-void DemoOutput_UpdateTxRx(uint8_t TxNum, uint8_t RxNum)
-{
-#if defined (ENABLE_LCD)
-    LCDTRXCount(TxNum, RxNum);  
-#endif
-}
+
 
 void DemoOutput_ChannelError(uint8_t channel)
 {
@@ -201,18 +167,12 @@ void DemoOutput_UnicastFail(void)
     #if defined (ENABLE_CONSOLE)
         printf("\r\nUnicast Failed\r\n");
     #endif
-#if defined (ENABLE_LCD)
-    LCDDisplay((char *)" Unicast Failed", 0, true);
-#endif
 }    
 
 void DemoOutput_BroadcastFail(void)
 {
 	#if defined (ENABLE_CONSOLE)
 	printf("\r\nBroadcast Failed\r\n");
-	#endif
-	#if defined (ENABLE_LCD)
-	LCDDisplay((char *)" Broadcast Failed", 0, true);
 	#endif
 }    
 

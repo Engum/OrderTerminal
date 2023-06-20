@@ -265,7 +265,6 @@ bool Initialize_LoRa(bool freezer_enable)
         // Set default channel
         if( MiApp_Set(CHANNEL, &myChannel) == false )
         {
-            DemoOutput_ChannelError(myChannel);
         }
             /*******************************************************************/
             // If no network can be found and join, we need to start a new 
@@ -313,10 +312,7 @@ bool Initialize_LoRa(bool freezer_enable)
 #endif
 
         // Turn on LED 1 to indicate connection established
-		LED_On(LED1);
-#if defined(PROTOCOL_P2P)
-        DemoOutput_Instruction();
-#endif    
+		LED_On(LED1); 
     printf("\n Satt opp nettverk \r\n");
 	}
 	/* Create SW timer for transmission timeout */
