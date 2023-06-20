@@ -157,12 +157,6 @@ void DemoOutput_HandleMessage(void)
 	printf("\r\n");    
 } 
 
-void DemoOutput_UpdateTxRx(uint8_t TxNum, uint8_t RxNum)
-{
-#if defined (ENABLE_LCD)
-    LCDTRXCount(TxNum, RxNum);  
-#endif
-}
 
 void DemoOutput_ChannelError(uint8_t channel)
 {
@@ -178,18 +172,12 @@ void DemoOutput_UnicastFail(void)
     #if defined (ENABLE_CONSOLE)
         printf("\r\nUnicast Failed\r\n");
     #endif
-#if defined (ENABLE_LCD)
-    LCDDisplay((char *)" Unicast Failed", 0, true);
-#endif
 }    
 
 void DemoOutput_BroadcastFail(void)
 {
 	#if defined (ENABLE_CONSOLE)
 	printf("\r\nBroadcast Failed\r\n");
-	#endif
-	#if defined (ENABLE_LCD)
-	LCDDisplay((char *)" Broadcast Failed", 0, true);
 	#endif
 }    
 

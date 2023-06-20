@@ -4156,10 +4156,10 @@ Disassembly of section .text:
     4400:	00010006 2000029c 00000000 00000000     ....... ........
 
 00004410 <pds_ff_PDS_EDC_ID>:
-    4410:	00010007 200026c9 00000000 00000000     .....&. ........
+    4410:	00010007 200026cd 00000000 00000000     .....&. ........
 
 00004420 <pds_ff_PDS_CONNECTION_TABLE_ID>:
-    4420:	00320005 2000266c 00000000 00000000     ..2.l&. ........
+    4420:	00320005 20002670 00000000 00000000     ..2.p&. ........
 
 00004430 <pds_ff_PDS_CONNECTION_MODE_ID>:
     4430:	00010004 20000010 00000000 00000000     ....... ........
@@ -4168,10 +4168,10 @@ Disassembly of section .text:
     4440:	00010003 20000011 00000000 00000000     ....... ........
 
 00004450 <pds_ff_PDS_PANID_ID>:
-    4450:	00020002 200026c0 00000000 00000000     .....&. ........
+    4450:	00020002 200026c4 00000000 00000000     .....&. ........
 
 00004460 <pds_ff_PDS_OUTGOING_FRAME_COUNTER_ID>:
-    4460:	00040001 2000212c 00000000 00000000     ....,!. ........
+    4460:	00040001 20002130 00000000 00000000     ....0!. ........
 
 00004470 <__do_global_dtors_aux>:
     4470:	b510      	push	{r4, lr}
@@ -10376,7 +10376,7 @@ Disassembly of section .text:
     7582:	47a0      	blx	r4
     7584:	e7bf      	b.n	7506 <DemoOutput_HandleMessage+0x2a>
     7586:	46c0      	nop			; (mov r8, r8)
-    7588:	20002954 	.word	0x20002954
+    7588:	20002958 	.word	0x20002958
     758c:	000182bc 	.word	0x000182bc
     7590:	0000c5b9 	.word	0x0000c5b9
     7594:	000182f4 	.word	0x000182f4
@@ -10617,7 +10617,7 @@ void T_BroadcastMessageToFerry(uint8_t signal)
     770c:	200000f8 	.word	0x200000f8
     7710:	0000c1d5 	.word	0x0000c1d5
     7714:	0000c119 	.word	0x0000c119
-    7718:	20001f69 	.word	0x20001f69
+    7718:	20001f6c 	.word	0x20001f6c
     771c:	200000f5 	.word	0x200000f5
     7720:	0000764d 	.word	0x0000764d
     7724:	0000ae91 	.word	0x0000ae91
@@ -10991,10 +10991,10 @@ void T_SendReceivedLoRaMessage(uint8_t message)
     7952:	61da      	str	r2, [r3, #28]
     7954:	e7e9      	b.n	792a <ReceivedDataIndication+0x16>
     7956:	46c0      	nop			; (mov r8, r8)
-    7958:	200026c0 	.word	0x200026c0
+    7958:	200026c4 	.word	0x200026c4
     795c:	0001834c 	.word	0x0001834c
     7960:	00017145 	.word	0x00017145
-    7964:	20002954 	.word	0x20002954
+    7964:	20002958 	.word	0x20002958
     7968:	000077ed 	.word	0x000077ed
     796c:	000074dd 	.word	0x000074dd
     7970:	40002800 	.word	0x40002800
@@ -11714,7 +11714,7 @@ void Run_Communication(void)
 	
 	// Read buffer for received UART message
 	usart_read_buffer_job(&UART_IO, (uint8_t*)rx_buffer_IO, AUTOPAX_UART_RX_BUFFER_LENGTH);
-    7dbe:	2201      	movs	r2, #1
+    7dbe:	2204      	movs	r2, #4
     7dc0:	4904      	ldr	r1, [pc, #16]	; (7dd4 <Run_Communication+0x20>)
     7dc2:	4805      	ldr	r0, [pc, #20]	; (7dd8 <Run_Communication+0x24>)
     7dc4:	4b05      	ldr	r3, [pc, #20]	; (7ddc <Run_Communication+0x28>)
@@ -11723,8 +11723,8 @@ void Run_Communication(void)
     7dca:	46c0      	nop			; (mov r8, r8)
     7dcc:	0000b5b5 	.word	0x0000b5b5
     7dd0:	0000773d 	.word	0x0000773d
-    7dd4:	20001fa0 	.word	0x20001fa0
-    7dd8:	20001f6c 	.word	0x20001f6c
+    7dd4:	20001fa4 	.word	0x20001fa4
+    7dd8:	20001f70 	.word	0x20001f70
     7ddc:	0000627d 	.word	0x0000627d
 
 00007de0 <CompareData>:
@@ -14807,8 +14807,8 @@ void Run_Communication(void)
     979a:	2001      	movs	r0, #1
     979c:	bd10      	pop	{r4, pc}
     979e:	46c0      	nop			; (mov r8, r8)
-    97a0:	200020dc 	.word	0x200020dc
-    97a4:	20002150 	.word	0x20002150
+    97a0:	200020e0 	.word	0x200020e0
+    97a4:	20002154 	.word	0x20002154
     97a8:	0000aa8d 	.word	0x0000aa8d
     97ac:	0000aa79 	.word	0x0000aa79
 
@@ -14955,10 +14955,10 @@ void Run_Communication(void)
     98c6:	bc04      	pop	{r2}
     98c8:	4690      	mov	r8, r2
     98ca:	bdf0      	pop	{r4, r5, r6, r7, pc}
-    98cc:	200020ec 	.word	0x200020ec
+    98cc:	200020f0 	.word	0x200020f0
     98d0:	00018b9c 	.word	0x00018b9c
     98d4:	0000ac05 	.word	0x0000ac05
-    98d8:	20002130 	.word	0x20002130
+    98d8:	20002134 	.word	0x20002134
 
 000098dc <DataEncrypt>:
     98dc:	b5f0      	push	{r4, r5, r6, r7, lr}
@@ -15089,12 +15089,12 @@ void Run_Communication(void)
     99d6:	46ab      	mov	fp, r5
     99d8:	bdf0      	pop	{r4, r5, r6, r7, pc}
     99da:	46c0      	nop			; (mov r8, r8)
-    99dc:	200020e4 	.word	0x200020e4
+    99dc:	200020e8 	.word	0x200020e8
     99e0:	000097b1 	.word	0x000097b1
     99e4:	0000ac05 	.word	0x0000ac05
-    99e8:	20002118 	.word	0x20002118
+    99e8:	2000211c 	.word	0x2000211c
     99ec:	00018b9c 	.word	0x00018b9c
-    99f0:	20002130 	.word	0x20002130
+    99f0:	20002134 	.word	0x20002134
 
 000099f4 <validate_mic>:
     99f4:	4b0e      	ldr	r3, [pc, #56]	; (9a30 <validate_mic+0x3c>)
@@ -15127,8 +15127,8 @@ void Run_Communication(void)
     9a2a:	b2c0      	uxtb	r0, r0
     9a2c:	e7e9      	b.n	9a02 <validate_mic+0xe>
     9a2e:	46c0      	nop			; (mov r8, r8)
-    9a30:	20002118 	.word	0x20002118
-    9a34:	20002140 	.word	0x20002140
+    9a30:	2000211c 	.word	0x2000211c
+    9a34:	20002144 	.word	0x20002144
 
 00009a38 <DataDecrypt>:
     9a38:	b5f0      	push	{r4, r5, r6, r7, lr}
@@ -15278,11 +15278,11 @@ void Run_Communication(void)
     9b58:	bdf0      	pop	{r4, r5, r6, r7, pc}
     9b5a:	46c0      	nop			; (mov r8, r8)
     9b5c:	0000ac05 	.word	0x0000ac05
-    9b60:	20002108 	.word	0x20002108
+    9b60:	2000210c 	.word	0x2000210c
     9b64:	00018b9c 	.word	0x00018b9c
     9b68:	000097b1 	.word	0x000097b1
-    9b6c:	20002118 	.word	0x20002118
-    9b70:	20002130 	.word	0x20002130
+    9b6c:	2000211c 	.word	0x2000211c
+    9b70:	20002134 	.word	0x20002134
     9b74:	000099f5 	.word	0x000099f5
 
 00009b78 <MiMAC_Set>:
@@ -15302,7 +15302,7 @@ void Run_Communication(void)
     9b92:	2000      	movs	r0, #0
     9b94:	bd10      	pop	{r4, pc}
     9b96:	46c0      	nop			; (mov r8, r8)
-    9b98:	20002152 	.word	0x20002152
+    9b98:	20002156 	.word	0x20002156
     9b9c:	0000ab51 	.word	0x0000ab51
 
 00009ba0 <MiMAC_Init>:
@@ -15369,15 +15369,15 @@ void Run_Communication(void)
     9c18:	e7ee      	b.n	9bf8 <MiMAC_Init+0x58>
     9c1a:	46c0      	nop			; (mov r8, r8)
     9c1c:	0000aa39 	.word	0x0000aa39
-    9c20:	200020e4 	.word	0x200020e4
+    9c20:	200020e8 	.word	0x200020e8
     9c24:	0000abed 	.word	0x0000abed
     9c28:	0000aa6d 	.word	0x0000aa6d
-    9c2c:	20001fd9 	.word	0x20001fd9
+    9c2c:	20001fdd 	.word	0x20001fdd
     9c30:	0000ac11 	.word	0x0000ac11
-    9c34:	2000225c 	.word	0x2000225c
+    9c34:	20002260 	.word	0x20002260
     9c38:	00000202 	.word	0x00000202
     9c3c:	00000303 	.word	0x00000303
-    9c40:	2000212c 	.word	0x2000212c
+    9c40:	20002130 	.word	0x20002130
     9c44:	000094e1 	.word	0x000094e1
     9c48:	00009409 	.word	0x00009409
 
@@ -15813,23 +15813,23 @@ void Run_Communication(void)
     9fa4:	e7b0      	b.n	9f08 <MiMAC_SendPacket+0x2bc>
     9fa6:	46c0      	nop			; (mov r8, r8)
     9fa8:	20000286 	.word	0x20000286
-    9fac:	200020fc 	.word	0x200020fc
-    9fb0:	20002150 	.word	0x20002150
-    9fb4:	20001fdc 	.word	0x20001fdc
+    9fac:	20002100 	.word	0x20002100
+    9fb0:	20002154 	.word	0x20002154
+    9fb4:	20001fe0 	.word	0x20001fe0
     9fb8:	0000ffff 	.word	0x0000ffff
-    9fbc:	2000212c 	.word	0x2000212c
+    9fbc:	20002130 	.word	0x20002130
     9fc0:	000098dd 	.word	0x000098dd
-    9fc4:	20001fd9 	.word	0x20001fd9
-    9fc8:	20001fd8 	.word	0x20001fd8
+    9fc4:	20001fdd 	.word	0x20001fdd
+    9fc8:	20001fdc 	.word	0x20001fdc
     9fcc:	20000283 	.word	0x20000283
-    9fd0:	200020dc 	.word	0x200020dc
-    9fd4:	20002118 	.word	0x20002118
+    9fd0:	200020e0 	.word	0x200020e0
+    9fd4:	2000211c 	.word	0x2000211c
     9fd8:	20000290 	.word	0x20000290
     9fdc:	20000288 	.word	0x20000288
     9fe0:	2000028c 	.word	0x2000028c
     9fe4:	20000285 	.word	0x20000285
     9fe8:	0000ab7d 	.word	0x0000ab7d
-    9fec:	200020e4 	.word	0x200020e4
+    9fec:	200020e8 	.word	0x200020e8
     9ff0:	000094e1 	.word	0x000094e1
 
 00009ff4 <MiMAC_DiscardPacket>:
@@ -15844,7 +15844,7 @@ void Run_Communication(void)
     a004:	5499      	strb	r1, [r3, r2]
     a006:	4770      	bx	lr
     a008:	2000000f 	.word	0x2000000f
-    a00c:	2000225c 	.word	0x2000225c
+    a00c:	20002260 	.word	0x20002260
 
 0000a010 <PHY_DataConf>:
     a010:	2200      	movs	r2, #0
@@ -15858,7 +15858,7 @@ void Run_Communication(void)
     a020:	4770      	bx	lr
     a022:	46c0      	nop			; (mov r8, r8)
     a024:	20000284 	.word	0x20000284
-    a028:	20002128 	.word	0x20002128
+    a028:	2000212c 	.word	0x2000212c
     a02c:	20000286 	.word	0x20000286
 
 0000a030 <MiMAC_RetryPacket>:
@@ -15889,7 +15889,7 @@ void Run_Communication(void)
     a060:	20000284 	.word	0x20000284
     a064:	0000a011 	.word	0x0000a011
     a068:	20000283 	.word	0x20000283
-    a06c:	20001fdc 	.word	0x20001fdc
+    a06c:	20001fe0 	.word	0x20001fe0
     a070:	0000ab7d 	.word	0x0000ab7d
 
 0000a074 <MiMAC_ReceivedPacket>:
@@ -16308,15 +16308,15 @@ void Run_Communication(void)
     a3ac:	700b      	strb	r3, [r1, #0]
     a3ae:	e7d2      	b.n	a356 <MiMAC_ReceivedPacket+0x2e2>
     a3b0:	2000000f 	.word	0x2000000f
-    a3b4:	2000225c 	.word	0x2000225c
+    a3b4:	20002260 	.word	0x20002260
     a3b8:	00000202 	.word	0x00000202
     a3bc:	00000303 	.word	0x00000303
-    a3c0:	200026a4 	.word	0x200026a4
+    a3c0:	200026a8 	.word	0x200026a8
     a3c4:	00009ff5 	.word	0x00009ff5
     a3c8:	0000f905 	.word	0x0000f905
     a3cc:	ff00ffff 	.word	0xff00ffff
-    a3d0:	2000266c 	.word	0x2000266c
-    a3d4:	20002254 	.word	0x20002254
+    a3d0:	20002670 	.word	0x20002670
+    a3d4:	20002258 	.word	0x20002258
     a3d8:	0000ae69 	.word	0x0000ae69
     a3dc:	0201      	lsls	r1, r0, #8
     a3de:	1809      	adds	r1, r1, r0
@@ -16752,22 +16752,22 @@ void Run_Communication(void)
     a73a:	701a      	strb	r2, [r3, #0]
     a73c:	e4c1      	b.n	a0c2 <MiMAC_ReceivedPacket+0x4e>
     a73e:	46c0      	nop			; (mov r8, r8)
-    a740:	2000225c 	.word	0x2000225c
-    a744:	200026a4 	.word	0x200026a4
-    a748:	20002664 	.word	0x20002664
+    a740:	20002260 	.word	0x20002260
+    a744:	200026a8 	.word	0x200026a8
+    a748:	20002668 	.word	0x20002668
     a74c:	00009ff5 	.word	0x00009ff5
     a750:	2000000f 	.word	0x2000000f
     a754:	0000f905 	.word	0x0000f905
-    a758:	20002254 	.word	0x20002254
+    a758:	20002258 	.word	0x20002258
     a75c:	0000ae69 	.word	0x0000ae69
-    a760:	200026cc 	.word	0x200026cc
-    a764:	20002140 	.word	0x20002140
+    a760:	200026d0 	.word	0x200026d0
+    a764:	20002144 	.word	0x20002144
     a768:	00009a39 	.word	0x00009a39
-    a76c:	20002144 	.word	0x20002144
+    a76c:	20002148 	.word	0x20002148
     a770:	00009c4d 	.word	0x00009c4d
-    a774:	20001fd8 	.word	0x20001fd8
+    a774:	20001fdc 	.word	0x20001fdc
     a778:	20000283 	.word	0x20000283
-    a77c:	20002968 	.word	0x20002968
+    a77c:	2000296c 	.word	0x2000296c
     a780:	0000a011 	.word	0x0000a011
 
 0000a784 <MiMAC_Task>:
@@ -16799,7 +16799,7 @@ void Run_Communication(void)
     a7b8:	20000288 	.word	0x20000288
     a7bc:	20000286 	.word	0x20000286
     a7c0:	20000290 	.word	0x20000290
-    a7c4:	20002128 	.word	0x20002128
+    a7c4:	2000212c 	.word	0x2000212c
     a7c8:	2000028c 	.word	0x2000028c
 
 0000a7cc <phySetChannel>:
@@ -17062,10 +17062,10 @@ void Run_Communication(void)
     aa02:	4798      	blx	r3
     aa04:	e7e0      	b.n	a9c8 <radioCallback+0xc4>
     aa06:	46c0      	nop			; (mov r8, r8)
-    aa08:	20002253 	.word	0x20002253
+    aa08:	20002257 	.word	0x20002257
     aa0c:	0000dcf1 	.word	0x0000dcf1
     aa10:	00018c14 	.word	0x00018c14
-    aa14:	2000225c 	.word	0x2000225c
+    aa14:	20002260 	.word	0x20002260
     aa18:	00000202 	.word	0x00000202
     aa1c:	00000303 	.word	0x00000303
     aa20:	20002d80 	.word	0x20002d80
@@ -17073,7 +17073,7 @@ void Run_Communication(void)
     aa28:	20000283 	.word	0x20000283
     aa2c:	0000a011 	.word	0x0000a011
     aa30:	0000c359 	.word	0x0000c359
-    aa34:	20002968 	.word	0x20002968
+    aa34:	2000296c 	.word	0x2000296c
 
 0000aa38 <PHY_Init>:
     aa38:	b510      	push	{r4, lr}
@@ -17113,7 +17113,7 @@ void Run_Communication(void)
     aa82:	7058      	strb	r0, [r3, #1]
     aa84:	b002      	add	sp, #8
     aa86:	4770      	bx	lr
-    aa88:	20002660 	.word	0x20002660
+    aa88:	20002664 	.word	0x20002664
 
 0000aa8c <PHY_SetShortAddr>:
     aa8c:	b082      	sub	sp, #8
@@ -17124,7 +17124,7 @@ void Run_Communication(void)
     aa96:	7058      	strb	r0, [r3, #1]
     aa98:	b002      	add	sp, #8
     aa9a:	4770      	bx	lr
-    aa9c:	20002664 	.word	0x20002664
+    aa9c:	20002668 	.word	0x20002668
 
 0000aaa0 <PHY_SetTxPower>:
     aaa0:	b500      	push	{lr}
@@ -17278,7 +17278,7 @@ void Run_Communication(void)
     abd2:	b005      	add	sp, #20
     abd4:	bd00      	pop	{pc}
     abd6:	46c0      	nop			; (mov r8, r8)
-    abd8:	20002154 	.word	0x20002154
+    abd8:	20002158 	.word	0x20002158
     abdc:	0000f001 	.word	0x0000f001
     abe0:	0000a7cd 	.word	0x0000a7cd
     abe4:	0000e6f9 	.word	0x0000e6f9
@@ -17312,7 +17312,7 @@ void Run_Communication(void)
     ac1a:	2b08      	cmp	r3, #8
     ac1c:	d1fa      	bne.n	ac14 <PHY_SetIEEEAddr+0x4>
     ac1e:	4770      	bx	lr
-    ac20:	20002254 	.word	0x20002254
+    ac20:	20002258 	.word	0x20002258
 
 0000ac24 <PHY_TaskHandler>:
     ac24:	4770      	bx	lr
@@ -17347,7 +17347,7 @@ void Run_Communication(void)
     ac56:	b2c0      	uxtb	r0, r0
     ac58:	e7f2      	b.n	ac40 <Total_Connections+0x8>
     ac5a:	4770      	bx	lr
-    ac5c:	2000266c 	.word	0x2000266c
+    ac5c:	20002670 	.word	0x20002670
 
 0000ac60 <IndirectPacket>:
     ac60:	b5f0      	push	{r4, r5, r6, r7, lr}
@@ -17500,7 +17500,7 @@ void Run_Communication(void)
     ad86:	e793      	b.n	acb0 <IndirectPacket+0x50>
     ad88:	2000      	movs	r0, #0
     ad8a:	e789      	b.n	aca0 <IndirectPacket+0x40>
-    ad8c:	200026e8 	.word	0x200026e8
+    ad8c:	200026ec 	.word	0x200026ec
     ad90:	0000c359 	.word	0x0000c359
 
 0000ad94 <SendPacket>:
@@ -17776,9 +17776,9 @@ void Run_Communication(void)
     afa6:	46a3      	mov	fp, r4
     afa8:	bdf0      	pop	{r4, r5, r6, r7, pc}
     afaa:	46c0      	nop			; (mov r8, r8)
-    afac:	2000266c 	.word	0x2000266c
+    afac:	20002670 	.word	0x20002670
     afb0:	0000ffff 	.word	0x0000ffff
-    afb4:	200026c0 	.word	0x200026c0
+    afb4:	200026c4 	.word	0x200026c4
     afb8:	0000ac61 	.word	0x0000ac61
     afbc:	0000ae69 	.word	0x0000ae69
     afc0:	0000ad95 	.word	0x0000ad95
@@ -17931,12 +17931,12 @@ void Run_Communication(void)
     b0e6:	2000      	movs	r0, #0
     b0e8:	b004      	add	sp, #16
     b0ea:	bd70      	pop	{r4, r5, r6, pc}
-    b0ec:	200026e4 	.word	0x200026e4
-    b0f0:	2000266c 	.word	0x2000266c
-    b0f4:	200026e8 	.word	0x200026e8
-    b0f8:	200026cc 	.word	0x200026cc
+    b0ec:	200026e8 	.word	0x200026e8
+    b0f0:	20002670 	.word	0x20002670
+    b0f4:	200026ec 	.word	0x200026ec
+    b0f8:	200026d0 	.word	0x200026d0
     b0fc:	00009409 	.word	0x00009409
-    b100:	200026c0 	.word	0x200026c0
+    b100:	200026c4 	.word	0x200026c4
     b104:	20000011 	.word	0x20000011
     b108:	00018d18 	.word	0x00018d18
     b10c:	00017145 	.word	0x00017145
@@ -17950,7 +17950,7 @@ void Run_Communication(void)
     b12c:	0000afc5 	.word	0x0000afc5
     b130:	00009779 	.word	0x00009779
     b134:	20000010 	.word	0x20000010
-    b138:	200026b9 	.word	0x200026b9
+    b138:	200026bd 	.word	0x200026bd
 
 0000b13c <DumpConnection>:
     b13c:	b5f0      	push	{r4, r5, r6, r7, lr}
@@ -18129,13 +18129,13 @@ void Run_Communication(void)
     b296:	46c0      	nop			; (mov r8, r8)
     b298:	00018c84 	.word	0x00018c84
     b29c:	00017261 	.word	0x00017261
-    b2a0:	2000266c 	.word	0x2000266c
+    b2a0:	20002670 	.word	0x20002670
     b2a4:	00018c58 	.word	0x00018c58
     b2a8:	00017145 	.word	0x00017145
     b2ac:	20000014 	.word	0x20000014
     b2b0:	000182f4 	.word	0x000182f4
     b2b4:	00018c6c 	.word	0x00018c6c
-    b2b8:	200026c0 	.word	0x200026c0
+    b2b8:	200026c4 	.word	0x200026c4
     b2bc:	00018304 	.word	0x00018304
     b2c0:	00018c78 	.word	0x00018c78
     b2c4:	20000011 	.word	0x20000011
@@ -18145,7 +18145,7 @@ void Run_Communication(void)
     b2d4:	00017179 	.word	0x00017179
     b2d8:	000185ac 	.word	0x000185ac
     b2dc:	00018cc4 	.word	0x00018cc4
-    b2e0:	20002673 	.word	0x20002673
+    b2e0:	20002677 	.word	0x20002677
     b2e4:	00018d10 	.word	0x00018d10
     b2e8:	00018d00 	.word	0x00018d00
 
@@ -18274,16 +18274,16 @@ void Run_Communication(void)
     b3de:	469a      	mov	sl, r3
     b3e0:	bdf8      	pop	{r3, r4, r5, r6, r7, pc}
     b3e2:	46c0      	nop			; (mov r8, r8)
-    b3e4:	20002954 	.word	0x20002954
-    b3e8:	2000266c 	.word	0x2000266c
+    b3e4:	20002958 	.word	0x20002958
+    b3e8:	20002670 	.word	0x20002670
     b3ec:	0000ae69 	.word	0x0000ae69
     b3f0:	20000010 	.word	0x20000010
-    b3f4:	200026e0 	.word	0x200026e0
-    b3f8:	200026cc 	.word	0x200026cc
-    b3fc:	20002668 	.word	0x20002668
-    b400:	200026e4 	.word	0x200026e4
+    b3f4:	200026e4 	.word	0x200026e4
+    b3f8:	200026d0 	.word	0x200026d0
+    b3fc:	2000266c 	.word	0x2000266c
+    b400:	200026e8 	.word	0x200026e8
     b404:	0000ac39 	.word	0x0000ac39
-    b408:	200026c9 	.word	0x200026c9
+    b408:	200026cd 	.word	0x200026cd
     b40c:	000094e1 	.word	0x000094e1
 
 0000b410 <MiApp_ConnectionMode>:
@@ -18306,7 +18306,7 @@ void Run_Communication(void)
     b430:	e7f1      	b.n	b416 <MiApp_ConnectionMode+0x6>
     b432:	46c0      	nop			; (mov r8, r8)
     b434:	20000010 	.word	0x20000010
-    b438:	200026b9 	.word	0x200026b9
+    b438:	200026bd 	.word	0x200026bd
     b43c:	000094e1 	.word	0x000094e1
 
 0000b440 <MiApp_SubscribeDataIndicationCallback>:
@@ -18892,26 +18892,26 @@ void Run_Communication(void)
     b8e4:	4798      	blx	r3
     b8e6:	e212      	b.n	bd0e <P2PTasks+0x75a>
     b8e8:	0000a785 	.word	0x0000a785
-    b8ec:	200026e8 	.word	0x200026e8
-    b8f0:	200026e4 	.word	0x200026e4
+    b8ec:	200026ec 	.word	0x200026ec
+    b8f0:	200026e8 	.word	0x200026e8
     b8f4:	0000b455 	.word	0x0000b455
     b8f8:	000c8708 	.word	0x000c8708
     b8fc:	20000298 	.word	0x20000298
     b900:	20000283 	.word	0x20000283
-    b904:	20002968 	.word	0x20002968
+    b904:	2000296c 	.word	0x2000296c
     b908:	0000a075 	.word	0x0000a075
-    b90c:	200026ca 	.word	0x200026ca
-    b910:	200026a4 	.word	0x200026a4
-    b914:	200026c8 	.word	0x200026c8
-    b918:	20002954 	.word	0x20002954
-    b91c:	20002964 	.word	0x20002964
+    b90c:	200026ce 	.word	0x200026ce
+    b910:	200026a8 	.word	0x200026a8
+    b914:	200026cc 	.word	0x200026cc
+    b918:	20002958 	.word	0x20002958
+    b91c:	20002968 	.word	0x20002968
     b920:	20000011 	.word	0x20000011
-    b924:	20002914 	.word	0x20002914
+    b924:	20002918 	.word	0x20002918
     b928:	0000c359 	.word	0x0000c359
     b92c:	0000c3b9 	.word	0x0000c3b9
     b930:	016e3600 	.word	0x016e3600
     b934:	00000223 	.word	0x00000223
-    b938:	200026bc 	.word	0x200026bc
+    b938:	200026c0 	.word	0x200026c0
     b93c:	000f4240 	.word	0x000f4240
     b940:	000094e1 	.word	0x000094e1
     b944:	00018d40 	.word	0x00018d40
@@ -18922,7 +18922,7 @@ void Run_Communication(void)
     b958:	00009ff5 	.word	0x00009ff5
     b95c:	20000010 	.word	0x20000010
     b960:	0000ffff 	.word	0x0000ffff
-    b964:	200026c0 	.word	0x200026c0
+    b964:	200026c4 	.word	0x200026c4
     b968:	0000b2ed 	.word	0x0000b2ed
     b96c:	0000c119 	.word	0x0000c119
     b970:	0000abed 	.word	0x0000abed
@@ -18931,7 +18931,7 @@ void Run_Communication(void)
     b97c:	0000453d 	.word	0x0000453d
     b980:	0000ac29 	.word	0x0000ac29
     b984:	0000ad95 	.word	0x0000ad95
-    b988:	200026b9 	.word	0x200026b9
+    b988:	200026bd 	.word	0x200026bd
     b98c:	2000000c 	.word	0x2000000c
     b990:	00004511 	.word	0x00004511
     b994:	2010      	movs	r0, #16
@@ -19309,32 +19309,32 @@ void Run_Communication(void)
     bc7c:	e7cc      	b.n	bc18 <P2PTasks+0x664>
     bc7e:	46c0      	nop			; (mov r8, r8)
     bc80:	0000c119 	.word	0x0000c119
-    bc84:	200026b9 	.word	0x200026b9
+    bc84:	200026bd 	.word	0x200026bd
     bc88:	2000000c 	.word	0x2000000c
     bc8c:	00009ff5 	.word	0x00009ff5
     bc90:	0000abed 	.word	0x0000abed
     bc94:	0000453d 	.word	0x0000453d
-    bc98:	20002954 	.word	0x20002954
+    bc98:	20002958 	.word	0x20002958
     bc9c:	0000ac29 	.word	0x0000ac29
     bca0:	0000ad95 	.word	0x0000ad95
     bca4:	00004511 	.word	0x00004511
-    bca8:	2000266c 	.word	0x2000266c
+    bca8:	20002670 	.word	0x20002670
     bcac:	0000ae69 	.word	0x0000ae69
     bcb0:	000094e1 	.word	0x000094e1
-    bcb4:	200026c4 	.word	0x200026c4
-    bcb8:	200026c0 	.word	0x200026c0
+    bcb4:	200026c8 	.word	0x200026c8
+    bcb8:	200026c4 	.word	0x200026c4
     bcbc:	0000ffff 	.word	0x0000ffff
     bcc0:	0000b2ed 	.word	0x0000b2ed
-    bcc4:	200026e4 	.word	0x200026e4
+    bcc4:	200026e8 	.word	0x200026e8
     bcc8:	0000c359 	.word	0x0000c359
-    bccc:	200026bc 	.word	0x200026bc
+    bccc:	200026c0 	.word	0x200026c0
     bcd0:	00009779 	.word	0x00009779
-    bcd4:	20002914 	.word	0x20002914
+    bcd4:	20002918 	.word	0x20002918
     bcd8:	20000011 	.word	0x20000011
-    bcdc:	20002964 	.word	0x20002964
-    bce0:	200026e8 	.word	0x200026e8
-    bce4:	200026ee 	.word	0x200026ee
-    bce8:	20002802 	.word	0x20002802
+    bcdc:	20002968 	.word	0x20002968
+    bce0:	200026ec 	.word	0x200026ec
+    bce4:	200026f2 	.word	0x200026f2
+    bce8:	20002806 	.word	0x20002806
     bcec:	0000764d 	.word	0x0000764d
     bcf0:	4c26      	ldr	r4, [pc, #152]	; (bd8c <P2PTasks+0x7d8>)
     bcf2:	7823      	ldrb	r3, [r4, #0]
@@ -19414,9 +19414,9 @@ void Run_Communication(void)
     bd86:	4c08      	ldr	r4, [pc, #32]	; (bda8 <P2PTasks+0x7f4>)
     bd88:	47a0      	blx	r4
     bd8a:	e7c0      	b.n	bd0e <P2PTasks+0x75a>
-    bd8c:	200026e4 	.word	0x200026e4
+    bd8c:	200026e8 	.word	0x200026e8
     bd90:	200002a0 	.word	0x200002a0
-    bd94:	20002954 	.word	0x20002954
+    bd94:	20002958 	.word	0x20002958
     bd98:	00009ff5 	.word	0x00009ff5
     bd9c:	00009669 	.word	0x00009669
     bda0:	20000010 	.word	0x20000010
@@ -19634,21 +19634,21 @@ void Run_Communication(void)
     bf4a:	46c0      	nop			; (mov r8, r8)
     bf4c:	20000010 	.word	0x20000010
     bf50:	0000c359 	.word	0x0000c359
-    bf54:	20002910 	.word	0x20002910
+    bf54:	20002914 	.word	0x20002914
     bf58:	fff0bdc0 	.word	0xfff0bdc0
-    bf5c:	200026e4 	.word	0x200026e4
-    bf60:	200026c4 	.word	0x200026c4
+    bf5c:	200026e8 	.word	0x200026e8
+    bf60:	200026c8 	.word	0x200026c8
     bf64:	0000afc5 	.word	0x0000afc5
     bf68:	0000c119 	.word	0x0000c119
     bf6c:	20000011 	.word	0x20000011
-    bf70:	200026b9 	.word	0x200026b9
+    bf70:	200026bd 	.word	0x200026bd
     bf74:	2000000c 	.word	0x2000000c
     bf78:	0000ffff 	.word	0x0000ffff
-    bf7c:	20002914 	.word	0x20002914
-    bf80:	200026c0 	.word	0x200026c0
+    bf7c:	20002918 	.word	0x20002918
+    bf80:	200026c4 	.word	0x200026c4
     bf84:	0000ac29 	.word	0x0000ac29
     bf88:	0000ad95 	.word	0x0000ad95
-    bf8c:	20002668 	.word	0x20002668
+    bf8c:	2000266c 	.word	0x2000266c
     bf90:	0000b5b5 	.word	0x0000b5b5
     bf94:	0000da9d 	.word	0x0000da9d
     bf98:	0000c3b9 	.word	0x0000c3b9
@@ -19786,8 +19786,8 @@ void Run_Communication(void)
     c0a0:	46a2      	mov	sl, r4
     c0a2:	bdf0      	pop	{r4, r5, r6, r7, pc}
     c0a4:	20000011 	.word	0x20000011
-    c0a8:	20002914 	.word	0x20002914
-    c0ac:	20002964 	.word	0x20002964
+    c0a8:	20002918 	.word	0x20002918
+    c0ac:	20002968 	.word	0x20002968
     c0b0:	00017145 	.word	0x00017145
     c0b4:	00018d30 	.word	0x00018d30
     c0b8:	000180a4 	.word	0x000180a4
@@ -20043,8 +20043,8 @@ void Run_Communication(void)
     c2be:	b2db      	uxtb	r3, r3
     c2c0:	7013      	strb	r3, [r2, #0]
     c2c2:	4770      	bx	lr
-    c2c4:	20002970 	.word	0x20002970
-    c2c8:	20002971 	.word	0x20002971
+    c2c4:	20002974 	.word	0x20002974
+    c2c8:	20002975 	.word	0x20002975
 
 0000c2cc <SYS_TimerStop>:
     c2cc:	4b0e      	ldr	r3, [pc, #56]	; (c308 <SYS_TimerStop+0x3c>)
@@ -20155,12 +20155,12 @@ void Run_Communication(void)
     c39a:	0020      	movs	r0, r4
     c39c:	bd70      	pop	{r4, r5, r6, pc}
     c39e:	46c0      	nop			; (mov r8, r8)
-    c3a0:	20002970 	.word	0x20002970
+    c3a0:	20002974 	.word	0x20002974
     c3a4:	0000dde1 	.word	0x0000dde1
     c3a8:	00013771 	.word	0x00013771
     c3ac:	0000ddf5 	.word	0x0000ddf5
     c3b0:	ff00ffff 	.word	0xff00ffff
-    c3b4:	20002971 	.word	0x20002971
+    c3b4:	20002975 	.word	0x20002975
 
 0000c3b8 <MiWi_TickGetDiff>:
     c3b8:	4288      	cmp	r0, r1
@@ -20559,7 +20559,7 @@ void Run_Communication(void)
     c6de:	4798      	blx	r3
     c6e0:	bd10      	pop	{r4, pc}
     c6e2:	46c0      	nop			; (mov r8, r8)
-    c6e4:	20002974 	.word	0x20002974
+    c6e4:	20002978 	.word	0x20002978
     c6e8:	20001b74 	.word	0x20001b74
     c6ec:	00005bc1 	.word	0x00005bc1
 
@@ -20572,7 +20572,7 @@ void Run_Communication(void)
     c6fa:	4798      	blx	r3
     c6fc:	bd10      	pop	{r4, pc}
     c6fe:	46c0      	nop			; (mov r8, r8)
-    c700:	20002974 	.word	0x20002974
+    c700:	20002978 	.word	0x20002978
     c704:	20001b74 	.word	0x20001b74
     c708:	00005bc1 	.word	0x00005bc1
 
@@ -20767,7 +20767,7 @@ void Run_Communication(void)
     c890:	00004851 	.word	0x00004851
     c894:	0000c695 	.word	0x0000c695
     c898:	0000c675 	.word	0x0000c675
-    c89c:	20002974 	.word	0x20002974
+    c89c:	20002978 	.word	0x20002978
     c8a0:	40002800 	.word	0x40002800
     c8a4:	00016b9d 	.word	0x00016b9d
     c8a8:	001e8480 	.word	0x001e8480
@@ -21003,7 +21003,7 @@ void Run_Communication(void)
     ca7e:	4798      	blx	r3
     ca80:	bd10      	pop	{r4, pc}
     ca82:	46c0      	nop			; (mov r8, r8)
-    ca84:	20002978 	.word	0x20002978
+    ca84:	2000297c 	.word	0x2000297c
     ca88:	00004cd1 	.word	0x00004cd1
 
 0000ca8c <SleepTimerStop>:
@@ -21013,7 +21013,7 @@ void Run_Communication(void)
     ca92:	4b02      	ldr	r3, [pc, #8]	; (ca9c <SleepTimerStop+0x10>)
     ca94:	4798      	blx	r3
     ca96:	bd10      	pop	{r4, pc}
-    ca98:	20002978 	.word	0x20002978
+    ca98:	2000297c 	.word	0x2000297c
     ca9c:	00004cfd 	.word	0x00004cfd
 
 0000caa0 <SystemBlockingWaitMs>:
@@ -21219,7 +21219,7 @@ void Run_Communication(void)
     cc3a:	dbed      	blt.n	cc18 <InitDefault868Channels+0xc0>
     cc3c:	bd70      	pop	{r4, r5, r6, pc}
     cc3e:	46c0      	nop			; (mov r8, r8)
-    cc40:	200029b4 	.word	0x200029b4
+    cc40:	200029b8 	.word	0x200029b8
     cc44:	00016b9d 	.word	0x00016b9d
     cc48:	00018db4 	.word	0x00018db4
     cc4c:	00016b8b 	.word	0x00016b8b
@@ -21338,7 +21338,7 @@ void Run_Communication(void)
     cd32:	dbed      	blt.n	cd10 <InitDefault433Channels+0xb4>
     cd34:	bd70      	pop	{r4, r5, r6, pc}
     cd36:	46c0      	nop			; (mov r8, r8)
-    cd38:	200029b4 	.word	0x200029b4
+    cd38:	200029b8 	.word	0x200029b8
     cd3c:	00016b9d 	.word	0x00016b9d
     cd40:	00018dac 	.word	0x00018dac
     cd44:	00016b8b 	.word	0x00016b8b
@@ -21476,7 +21476,7 @@ void Run_Communication(void)
     ce4e:	54d1      	strb	r1, [r2, r3]
     ce50:	bdf8      	pop	{r3, r4, r5, r6, r7, pc}
     ce52:	46c0      	nop			; (mov r8, r8)
-    ce54:	200029b4 	.word	0x200029b4
+    ce54:	200029b8 	.word	0x200029b8
     ce58:	00016b9d 	.word	0x00016b9d
     ce5c:	00018e34 	.word	0x00018e34
     ce60:	00016b8b 	.word	0x00016b8b
@@ -21631,7 +21631,7 @@ void Run_Communication(void)
     cf8e:	4699      	mov	r9, r3
     cf90:	46a2      	mov	sl, r4
     cf92:	bdf0      	pop	{r4, r5, r6, r7, pc}
-    cf94:	200029b4 	.word	0x200029b4
+    cf94:	200029b8 	.word	0x200029b8
     cf98:	00016b9d 	.word	0x00016b9d
     cf9c:	00018e78 	.word	0x00018e78
     cfa0:	00016b8b 	.word	0x00016b8b
@@ -21725,7 +21725,7 @@ void Run_Communication(void)
     d04a:	54d1      	strb	r1, [r2, r3]
     d04c:	3b1f      	subs	r3, #31
     d04e:	e7eb      	b.n	d028 <setDefaultTxPower+0x2c>
-    d050:	200029b4 	.word	0x200029b4
+    d050:	200029b8 	.word	0x200029b8
 
 0000d054 <Enableallchannels>:
     d054:	b510      	push	{r4, lr}
@@ -21752,7 +21752,7 @@ void Run_Communication(void)
     d07e:	4a01      	ldr	r2, [pc, #4]	; (d084 <Enableallchannels+0x30>)
     d080:	54d1      	strb	r1, [r2, r3]
     d082:	bd10      	pop	{r4, pc}
-    d084:	200029b4 	.word	0x200029b4
+    d084:	200029b8 	.word	0x200029b8
 
 0000d088 <LORAREG_EnableallChannels>:
     d088:	b510      	push	{r4, lr}
@@ -21884,9 +21884,9 @@ void Run_Communication(void)
     d18a:	4798      	blx	r3
     d18c:	b003      	add	sp, #12
     d18e:	bdf0      	pop	{r4, r5, r6, r7, pc}
-    d190:	20002bc0 	.word	0x20002bc0
+    d190:	20002bc4 	.word	0x20002bc4
     d194:	42003400 	.word	0x42003400
-    d198:	20002bcc 	.word	0x20002bcc
+    d198:	20002bd0 	.word	0x20002bd0
     d19c:	00004681 	.word	0x00004681
     d1a0:	20001e64 	.word	0x20001e64
     d1a4:	00004715 	.word	0x00004715
@@ -21911,9 +21911,9 @@ void Run_Communication(void)
     d1ce:	4798      	blx	r3
     d1d0:	bd70      	pop	{r4, r5, r6, pc}
     d1d2:	46c0      	nop			; (mov r8, r8)
-    d1d4:	20002bc0 	.word	0x20002bc0
+    d1d4:	20002bc4 	.word	0x20002bc4
     d1d8:	00004645 	.word	0x00004645
-    d1dc:	20002bcc 	.word	0x20002bcc
+    d1dc:	20002bd0 	.word	0x20002bd0
     d1e0:	42003400 	.word	0x42003400
     d1e4:	000046f5 	.word	0x000046f5
     d1e8:	0000465f 	.word	0x0000465f
@@ -23797,7 +23797,7 @@ void UART_IO_rx_cb(struct usart_module *const usart_module)
 }
     e194:	bd10      	pop	{r4, pc}
     e196:	46c0      	nop			; (mov r8, r8)
-    e198:	20001fa0 	.word	0x20001fa0
+    e198:	20001fa4 	.word	0x20001fa4
     e19c:	00007791 	.word	0x00007791
 
 0000e1a0 <UART_LoRa_init>:
@@ -23965,7 +23965,7 @@ static inline void system_interrupt_enable(
     e23e:	bd30      	pop	{r4, r5, pc}
     e240:	00160002 	.word	0x00160002
     e244:	00170002 	.word	0x00170002
-    e248:	20001fa4 	.word	0x20001fa4
+    e248:	20001fa8 	.word	0x20001fa8
     e24c:	00005cb5 	.word	0x00005cb5
     e250:	42000c00 	.word	0x42000c00
     e254:	000057e5 	.word	0x000057e5
@@ -24089,7 +24089,7 @@ static inline void system_interrupt_enable(
     e2fa:	bd30      	pop	{r4, r5, pc}
     e2fc:	00220003 	.word	0x00220003
     e300:	00370003 	.word	0x00370003
-    e304:	20001f6c 	.word	0x20001f6c
+    e304:	20001f70 	.word	0x20001f70
     e308:	00005cb5 	.word	0x00005cb5
     e30c:	43000400 	.word	0x43000400
     e310:	000057e5 	.word	0x000057e5
@@ -24133,7 +24133,7 @@ static inline void system_interrupt_enable(
 }
     e344:	bd10      	pop	{r4, pc}
     e346:	46c0      	nop			; (mov r8, r8)
-    e348:	20001f6c 	.word	0x20001f6c
+    e348:	20001f70 	.word	0x20001f70
     e34c:	0000e189 	.word	0x0000e189
     e350:	00006265 	.word	0x00006265
 
@@ -24161,7 +24161,7 @@ void UART_SAM_To_RPi(uint8_t* data)
 }
     e36c:	bd10      	pop	{r4, pc}
     e36e:	46c0      	nop			; (mov r8, r8)
-    e370:	20001fa4 	.word	0x20001fa4
+    e370:	20001fa8 	.word	0x20001fa8
     e374:	000060bd 	.word	0x000060bd
 
 0000e378 <UART_SAM_To_IO>:
@@ -24177,7 +24177,7 @@ void UART_SAM_To_IO(uint8_t* data)
     e382:	4798      	blx	r3
     e384:	bd10      	pop	{r4, pc}
     e386:	46c0      	nop			; (mov r8, r8)
-    e388:	20001f6c 	.word	0x20001f6c
+    e388:	20001f70 	.word	0x20001f70
     e38c:	000060bd 	.word	0x000060bd
 
 0000e390 <LORAWAN_TxHandler>:
@@ -24409,7 +24409,7 @@ void UART_SAM_To_IO(uint8_t* data)
     e56e:	4b04      	ldr	r3, [pc, #16]	; (e580 <LORAWAN_RxHandler+0x40>)
     e570:	4798      	blx	r3
     e572:	e7fa      	b.n	e56a <LORAWAN_RxHandler+0x2a>
-    e574:	20002253 	.word	0x20002253
+    e574:	20002257 	.word	0x20002257
     e578:	0000f1f5 	.word	0x0000f1f5
     e57c:	00011c55 	.word	0x00011c55
     e580:	00011569 	.word	0x00011569
@@ -32347,7 +32347,7 @@ void UART_SAM_To_IO(uint8_t* data)
    126c0:	00013109 	.word	0x00013109
    126c4:	000132fd 	.word	0x000132fd
    126c8:	200034d4 	.word	0x200034d4
-   126cc:	20002253 	.word	0x20002253
+   126cc:	20002257 	.word	0x20002257
    126d0:	00011239 	.word	0x00011239
    126d4:	00011725 	.word	0x00011725
    126d8:	0001032d 	.word	0x0001032d

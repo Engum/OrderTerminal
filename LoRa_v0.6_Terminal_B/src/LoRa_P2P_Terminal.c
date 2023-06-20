@@ -9,10 +9,6 @@
 #include "UART_LoRa_AUTOPAX.h"
 #include "UpdateQueue.h"
 
-#if defined(ENABLE_SLEEP_FEATURE)
-#include "sleep_mgr.h"
-#endif
-
 #if defined (ENABLE_CONSOLE)
 #include "sio2host.h"
 #endif
@@ -89,8 +85,7 @@ void ReceivedDataIndication (RECEIVED_MESSAGE *ind)
 		#if defined(ENABLE_CONSOLE)
 		DemoOutput_HandleMessage();
 		#endif
-		DemoOutput_UpdateTxRx(TxNum, ++RxNum);
-		// Toggle LED2 to indicate receiving a packet.
+		// Toggle LED0 to indicate receiving a packet.
 		LED_Toggle(LED0);
 		
 	}
