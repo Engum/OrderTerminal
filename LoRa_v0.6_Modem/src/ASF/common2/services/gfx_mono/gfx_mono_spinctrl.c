@@ -104,7 +104,9 @@ static void gfx_mono_spinctrl_draw_spin_indicator(struct gfx_mono_spinctrl
 }
 
 /**
- * \brief Draw OK button at bottom of screen
+ * \brief Draw OK 
+ 
+  at bottom of screen
  *
  * This function draws an OK button at the bottom of the screen. It will
  * also draw an indicator arrow in front of the button if the indicator bool

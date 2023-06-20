@@ -1,7 +1,7 @@
 
 #ifndef LORA_P2P_MODEM_H
 #define LORA_P2P_MODEM_H
-//#define DEBUG
+#define DEBUG
 
 
 /*********************************************************************

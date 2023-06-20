@@ -7,7 +7,7 @@
 #include "sio2host.h"
 
 //-------- DEFINES -----------------------------//
-#define AUTOPAX_UART_RX_BUFFER_LENGTH   1
+#define AUTOPAX_UART_RX_BUFFER_LENGTH   4
 
 #define UART_BAUD 115200
 

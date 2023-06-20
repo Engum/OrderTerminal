@@ -45,8 +45,12 @@ void UART_IO_cb_init(void)
 
 void UART_IO_rx_cb(struct usart_module *const usart_module)
 {
-	printf("\n\r UART message received %x", rx_buffer_IO[0]);
-	M_SendReceivedUARTMessage(rx_buffer_IO[0]);
+	for (int i = 0; i<3; i++)
+	{
+		printf("\n\r UART message received %x", rx_buffer_IO[i]);
+		delay_ms(100);
+		M_SendReceivedUARTMessage(rx_buffer_IO[i]);
+	}
 }
 
 void UART_SAM_To_IO(uint8_t* data)

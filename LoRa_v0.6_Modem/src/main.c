@@ -30,9 +30,9 @@
 * \asf_license_stop
 *
 * Comment developer:
-* Copyright (c) CC0 2022 bachelorgroupe E2318
+* Copyright (c) CC0 2022 bachelorgruppe E2318
 * The following code is highly based on microchip example code.
-* There are modification, added functions and program flow to evaluate for wanted software and functinality
+* There are modification, added functions and program flow to evaluate for wanted software and functionality
 
 * The files LoRa_P2P_Terminal/Modem is mostly own functions, based on microchip example code
 
