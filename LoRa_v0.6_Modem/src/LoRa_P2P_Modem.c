@@ -112,7 +112,9 @@ void M_BroadcastMessageToTerminal(uint8_t signal)
 	{
 		previousMessage[i] = signal;
 		dataPtr[dataLen++] = signal;
+		#ifdef DEBUG
 		sio2host_putchar(dataPtr[i]);
+		#endif
 	}
 			
 	// Broadcast the message
@@ -131,7 +133,10 @@ void M_BroadcastMessageToTerminal(uint8_t signal)
 // Send received UART message with LoRa
 void M_SendReceivedUARTMessage(uint8_t message)
 {
-	printf("\n\r Send UART message %x \n", message);
+	#ifdef DEBUG
+		printf("\n\r Send UART message %x \n", message);
+	#endif
+	
 	switch(message)
 	{
 		case TEAID_GCMD_RESET:
@@ -139,11 +144,15 @@ void M_SendReceivedUARTMessage(uint8_t message)
 			
 		case TEAID_GCMD_OPEN:
 			ferryState = TEAID; 
+			#ifdef DEBUG
 			printf("\n Open gate at terminal A from IO \n\r");
+			#endif
 			break;
 			
 		case TEAID_GCMD_CLOSE:
+			#ifdef DEBUG
 			printf("\n Close gate at terminal A from IO \n\r");
+			#endif
 			break;
 			
 		case TEAID_GCMD_PAUSE:
@@ -154,11 +163,15 @@ void M_SendReceivedUARTMessage(uint8_t message)
 			
 		case TEBID_GCMD_OPEN:
 			ferryState = TEBID;
-			printf("\n Open gate at terminal B from IO \n\r");
+			#ifdef DEBUG
+				printf("\n Open gate at terminal B from IO \n\r");
+			#endif
 			break;
 			
 		case TEBID_GCMD_CLOSE:
+			#ifdef DEBUG
 			printf("\n Close gate at terminal B from IO \n\r");
+			#endif
 			break;
 			
 		case TEBID_GCMD_PAUSE:
@@ -251,7 +264,9 @@ void M_SendReceivedUARTMessage(uint8_t message)
 // Send received LoRa message with UART
 void M_SendReceivedLoRaMessage(uint8_t message)
 {
+	#ifdef DEBUG
 	printf("\n\r Received message %x \n", message);
+	#endif
 	// Checks if received message is meant for terminal A
 	if (M_CheckIdentifier(message))
 	{
@@ -337,12 +352,16 @@ void M_SendReceivedLoRaMessage(uint8_t message)
 			
 			case TEAID_REQF_REQUEST:
 				processOrder(message, TEAID);
+				#ifdef DEBUG
 				printf("\n Received order from terminal A \n\r");
+				#endif
 				break;
 				
 			case TEBID_REQF_REQUEST:
 				processOrder(message, TEBID);
+				#ifdef DEBUG
 				printf("\n Received order from terminal B \n\r");
+				#endif
 				break;
 				
 			case PASSENGERS_ZERO:
@@ -404,7 +423,9 @@ void M_SendReceivedLoRaMessage(uint8_t message)
 		if (previousMessage)	// Send previous message if its not NULL
 		{
 			M_BroadcastMessageToTerminal(previousMessage[0]);
+			#ifdef DEBUG
 			printf("\n Send message again \n\r");
+			#endif
 		}
 	}
 	else

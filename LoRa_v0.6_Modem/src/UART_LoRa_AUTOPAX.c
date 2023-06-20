@@ -109,8 +109,10 @@ void UART_IO_rx_cb(struct usart_module *const usart_module)
 {
 	//port_pin_toggle_output_level(LED_0_PIN);
 	//usart_write_buffer_job(&UART_LoRa,(uint8_t *)rx_buffer_IO, IO_UART_RX_BUFFER_LENGTH);
+	#ifdef DEBUG
 	printf("\n\r UART message received %x", rx_buffer_IO[0]);
-	M_SendReceivedUARTMessage(rx_buffer_IO[0]);
+	#endif
+	M_SendReceivedUARTMessage(rx_buffer_IO[0]);	
 }
 
 void UART_SAM_To_RPi(uint8_t* data)
