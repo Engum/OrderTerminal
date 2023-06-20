@@ -14918,7 +14918,7 @@ bool Initialize_LoRa(bool freezer_enable)
 	
 	if (freezer_enable)
     7a64:	2c00      	cmp	r4, #0
-    7a66:	d038      	beq.n	7ada <Initialize_LoRa+0x82>
+    7a66:	d034      	beq.n	7ad2 <Initialize_LoRa+0x7a>
     {
         MiApp_ProtocolInit(NULL, NULL);
     7a68:	2100      	movs	r1, #0
@@ -15006,147 +15006,147 @@ bool Initialize_LoRa(bool freezer_enable)
     7ac6:	484e      	ldr	r0, [pc, #312]	; (7c00 <Initialize_LoRa+0x1a8>)
     7ac8:	4b4e      	ldr	r3, [pc, #312]	; (7c04 <Initialize_LoRa+0x1ac>)
     7aca:	4798      	blx	r3
-		port_base->OUTCLR.reg = pin_mask;
-    7acc:	2280      	movs	r2, #128	; 0x80
-    7ace:	02d2      	lsls	r2, r2, #11
-    7ad0:	4b4d      	ldr	r3, [pc, #308]	; (7c08 <Initialize_LoRa+0x1b0>)
-    7ad2:	615a      	str	r2, [r3, #20]
-	LED_On(LED1);
+	
 	return true;
 }
-    7ad4:	2001      	movs	r0, #1
-    7ad6:	b005      	add	sp, #20
-    7ad8:	bdf0      	pop	{r4, r5, r6, r7, pc}
+    7acc:	2001      	movs	r0, #1
+    7ace:	b005      	add	sp, #20
+    7ad0:	bdf0      	pop	{r4, r5, r6, r7, pc}
 		port_base->OUTSET.reg = pin_mask;
-    7ada:	2280      	movs	r2, #128	; 0x80
-    7adc:	0312      	lsls	r2, r2, #12
-    7ade:	4b4a      	ldr	r3, [pc, #296]	; (7c08 <Initialize_LoRa+0x1b0>)
-    7ae0:	619a      	str	r2, [r3, #24]
+    7ad2:	2280      	movs	r2, #128	; 0x80
+    7ad4:	0312      	lsls	r2, r2, #12
+    7ad6:	4b4c      	ldr	r3, [pc, #304]	; (7c08 <Initialize_LoRa+0x1b0>)
+    7ad8:	619a      	str	r2, [r3, #24]
         MiApp_ProtocolInit(NULL, NULL);
-    7ae2:	2100      	movs	r1, #0
-    7ae4:	2000      	movs	r0, #0
-    7ae6:	4b3d      	ldr	r3, [pc, #244]	; (7bdc <Initialize_LoRa+0x184>)
-    7ae8:	4798      	blx	r3
+    7ada:	2100      	movs	r1, #0
+    7adc:	2000      	movs	r0, #0
+    7ade:	4b3f      	ldr	r3, [pc, #252]	; (7bdc <Initialize_LoRa+0x184>)
+    7ae0:	4798      	blx	r3
 		uint8_t txPower = 0x01 ; // 1 dBm
-    7aea:	ac01      	add	r4, sp, #4
-    7aec:	2301      	movs	r3, #1
-    7aee:	7023      	strb	r3, [r4, #0]
+    7ae2:	ac01      	add	r4, sp, #4
+    7ae4:	2301      	movs	r3, #1
+    7ae6:	7023      	strb	r3, [r4, #0]
 		PHY_SetTxPower(txPower) ;
-    7af0:	2001      	movs	r0, #1
-    7af2:	4b46      	ldr	r3, [pc, #280]	; (7c0c <Initialize_LoRa+0x1b4>)
-    7af4:	4798      	blx	r3
+    7ae8:	2001      	movs	r0, #1
+    7aea:	4b48      	ldr	r3, [pc, #288]	; (7c0c <Initialize_LoRa+0x1b4>)
+    7aec:	4798      	blx	r3
 		txPower = 255 ;
-    7af6:	27ff      	movs	r7, #255	; 0xff
-    7af8:	7027      	strb	r7, [r4, #0]
+    7aee:	27ff      	movs	r7, #255	; 0xff
+    7af0:	7027      	strb	r7, [r4, #0]
 		RADIO_GetAttr(OUTPUT_POWER, (void *)&txPower) ;
-    7afa:	0021      	movs	r1, r4
-    7afc:	2004      	movs	r0, #4
-    7afe:	4e44      	ldr	r6, [pc, #272]	; (7c10 <Initialize_LoRa+0x1b8>)
-    7b00:	47b0      	blx	r6
+    7af2:	0021      	movs	r1, r4
+    7af4:	2004      	movs	r0, #4
+    7af6:	4e46      	ldr	r6, [pc, #280]	; (7c10 <Initialize_LoRa+0x1b8>)
+    7af8:	47b0      	blx	r6
 		printf("\nCurrent Tx output power: %d\r\n", txPower) ;
-    7b02:	7821      	ldrb	r1, [r4, #0]
-    7b04:	4843      	ldr	r0, [pc, #268]	; (7c14 <Initialize_LoRa+0x1bc>)
-    7b06:	4c44      	ldr	r4, [pc, #272]	; (7c18 <Initialize_LoRa+0x1c0>)
-    7b08:	47a0      	blx	r4
+    7afa:	7821      	ldrb	r1, [r4, #0]
+    7afc:	4845      	ldr	r0, [pc, #276]	; (7c14 <Initialize_LoRa+0x1bc>)
+    7afe:	4c46      	ldr	r4, [pc, #280]	; (7c18 <Initialize_LoRa+0x1c0>)
+    7b00:	47a0      	blx	r4
 		uint8_t paBoost = 255 ;
-    7b0a:	466b      	mov	r3, sp
-    7b0c:	1d5d      	adds	r5, r3, #5
-    7b0e:	715f      	strb	r7, [r3, #5]
+    7b02:	466b      	mov	r3, sp
+    7b04:	1d5d      	adds	r5, r3, #5
+    7b06:	715f      	strb	r7, [r3, #5]
 		RADIO_GetAttr(PABOOST, (void *)&paBoost) ;
-    7b10:	0029      	movs	r1, r5
-    7b12:	2008      	movs	r0, #8
-    7b14:	47b0      	blx	r6
+    7b08:	0029      	movs	r1, r5
+    7b0a:	2008      	movs	r0, #8
+    7b0c:	47b0      	blx	r6
 		printf("PA BOOST status: %d\r\n", paBoost) ;
-    7b16:	7829      	ldrb	r1, [r5, #0]
-    7b18:	4840      	ldr	r0, [pc, #256]	; (7c1c <Initialize_LoRa+0x1c4>)
-    7b1a:	47a0      	blx	r4
+    7b0e:	7829      	ldrb	r1, [r5, #0]
+    7b10:	4842      	ldr	r0, [pc, #264]	; (7c1c <Initialize_LoRa+0x1c4>)
+    7b12:	47a0      	blx	r4
 		RadioDataRate_t sf = SF_7 ;
-    7b1c:	466b      	mov	r3, sp
-    7b1e:	1d9d      	adds	r5, r3, #6
-    7b20:	2307      	movs	r3, #7
-    7b22:	702b      	strb	r3, [r5, #0]
+    7b14:	466b      	mov	r3, sp
+    7b16:	1d9d      	adds	r5, r3, #6
+    7b18:	2307      	movs	r3, #7
+    7b1a:	702b      	strb	r3, [r5, #0]
 		PHY_GetAttribute(SPREADING_FACTOR, (void *)&sf) ;
-    7b24:	0029      	movs	r1, r5
-    7b26:	2016      	movs	r0, #22
-    7b28:	4e3d      	ldr	r6, [pc, #244]	; (7c20 <Initialize_LoRa+0x1c8>)
-    7b2a:	47b0      	blx	r6
+    7b1c:	0029      	movs	r1, r5
+    7b1e:	2016      	movs	r0, #22
+    7b20:	4e3f      	ldr	r6, [pc, #252]	; (7c20 <Initialize_LoRa+0x1c8>)
+    7b22:	47b0      	blx	r6
 		printf("Current SF: SF%d\r\n", sf) ;
-    7b2c:	7829      	ldrb	r1, [r5, #0]
-    7b2e:	483d      	ldr	r0, [pc, #244]	; (7c24 <Initialize_LoRa+0x1cc>)
-    7b30:	47a0      	blx	r4
+    7b24:	7829      	ldrb	r1, [r5, #0]
+    7b26:	483f      	ldr	r0, [pc, #252]	; (7c24 <Initialize_LoRa+0x1cc>)
+    7b28:	47a0      	blx	r4
 		PHY_GetAttribute(BANDWIDTH, (void *)&bw) ;
-    7b32:	466b      	mov	r3, sp
-    7b34:	1ddd      	adds	r5, r3, #7
-    7b36:	0029      	movs	r1, r5
-    7b38:	2007      	movs	r0, #7
-    7b3a:	47b0      	blx	r6
+    7b2a:	466b      	mov	r3, sp
+    7b2c:	1ddd      	adds	r5, r3, #7
+    7b2e:	0029      	movs	r1, r5
+    7b30:	2007      	movs	r0, #7
+    7b32:	47b0      	blx	r6
 		printf("Current BW (125kHz=7, 250kHz=8, 500kHz=9): %d\r\n", bw) ;
-    7b3c:	7829      	ldrb	r1, [r5, #0]
-    7b3e:	483a      	ldr	r0, [pc, #232]	; (7c28 <Initialize_LoRa+0x1d0>)
-    7b40:	47a0      	blx	r4
+    7b34:	7829      	ldrb	r1, [r5, #0]
+    7b36:	483c      	ldr	r0, [pc, #240]	; (7c28 <Initialize_LoRa+0x1d0>)
+    7b38:	47a0      	blx	r4
 		srand(PHY_RandomReq());
-    7b42:	4b27      	ldr	r3, [pc, #156]	; (7be0 <Initialize_LoRa+0x188>)
-    7b44:	4798      	blx	r3
-    7b46:	4b27      	ldr	r3, [pc, #156]	; (7be4 <Initialize_LoRa+0x18c>)
-    7b48:	4798      	blx	r3
+    7b3a:	4b29      	ldr	r3, [pc, #164]	; (7be0 <Initialize_LoRa+0x188>)
+    7b3c:	4798      	blx	r3
+    7b3e:	4b29      	ldr	r3, [pc, #164]	; (7be4 <Initialize_LoRa+0x18c>)
+    7b40:	4798      	blx	r3
 		memset((uint8_t *)&invalidIEEEAddr, 0x00, LONG_ADDR_LEN);
-    7b4a:	2200      	movs	r2, #0
-    7b4c:	2300      	movs	r3, #0
-    7b4e:	9202      	str	r2, [sp, #8]
-    7b50:	9303      	str	r3, [sp, #12]
+    7b42:	2200      	movs	r2, #0
+    7b44:	2300      	movs	r3, #0
+    7b46:	9202      	str	r2, [sp, #8]
+    7b48:	9303      	str	r3, [sp, #12]
 		if (0 == memcmp((uint8_t *)&invalidIEEEAddr, (uint8_t *)&myLongAddress, LONG_ADDR_LEN))
-    7b52:	4e25      	ldr	r6, [pc, #148]	; (7be8 <Initialize_LoRa+0x190>)
-    7b54:	3208      	adds	r2, #8
-    7b56:	0031      	movs	r1, r6
-    7b58:	a802      	add	r0, sp, #8
-    7b5a:	4d24      	ldr	r5, [pc, #144]	; (7bec <Initialize_LoRa+0x194>)
-    7b5c:	47a8      	blx	r5
-    7b5e:	0004      	movs	r4, r0
+    7b4a:	4e27      	ldr	r6, [pc, #156]	; (7be8 <Initialize_LoRa+0x190>)
+    7b4c:	3208      	adds	r2, #8
+    7b4e:	0031      	movs	r1, r6
+    7b50:	a802      	add	r0, sp, #8
+    7b52:	4d26      	ldr	r5, [pc, #152]	; (7bec <Initialize_LoRa+0x194>)
+    7b54:	47a8      	blx	r5
+    7b56:	0004      	movs	r4, r0
 		memset((uint8_t *)&invalidIEEEAddr, 0xFF, LONG_ADDR_LEN);
-    7b60:	2201      	movs	r2, #1
-    7b62:	4252      	negs	r2, r2
-    7b64:	17d3      	asrs	r3, r2, #31
-    7b66:	9202      	str	r2, [sp, #8]
-    7b68:	9303      	str	r3, [sp, #12]
+    7b58:	2201      	movs	r2, #1
+    7b5a:	4252      	negs	r2, r2
+    7b5c:	17d3      	asrs	r3, r2, #31
+    7b5e:	9202      	str	r2, [sp, #8]
+    7b60:	9303      	str	r3, [sp, #12]
 		if (0 == memcmp((uint8_t *)&invalidIEEEAddr, (uint8_t *)&myLongAddress, LONG_ADDR_LEN))
-    7b6a:	3209      	adds	r2, #9
-    7b6c:	0031      	movs	r1, r6
-    7b6e:	a802      	add	r0, sp, #8
-    7b70:	47a8      	blx	r5
-    7b72:	2800      	cmp	r0, #0
-    7b74:	d01f      	beq.n	7bb6 <Initialize_LoRa+0x15e>
+    7b62:	3209      	adds	r2, #9
+    7b64:	0031      	movs	r1, r6
+    7b66:	a802      	add	r0, sp, #8
+    7b68:	47a8      	blx	r5
+    7b6a:	2800      	cmp	r0, #0
+    7b6c:	d023      	beq.n	7bb6 <Initialize_LoRa+0x15e>
 		if (invalidIEEEAddrFlag)
-    7b76:	2c00      	cmp	r4, #0
-    7b78:	d01d      	beq.n	7bb6 <Initialize_LoRa+0x15e>
+    7b6e:	2c00      	cmp	r4, #0
+    7b70:	d021      	beq.n	7bb6 <Initialize_LoRa+0x15e>
 		PHY_SetIEEEAddr((uint8_t *)&myLongAddress);
-    7b7a:	481b      	ldr	r0, [pc, #108]	; (7be8 <Initialize_LoRa+0x190>)
-    7b7c:	4b1d      	ldr	r3, [pc, #116]	; (7bf4 <Initialize_LoRa+0x19c>)
-    7b7e:	4798      	blx	r3
+    7b72:	481d      	ldr	r0, [pc, #116]	; (7be8 <Initialize_LoRa+0x190>)
+    7b74:	4b1f      	ldr	r3, [pc, #124]	; (7bf4 <Initialize_LoRa+0x19c>)
+    7b76:	4798      	blx	r3
         MiApp_ConnectionMode(ENABLE_ALL_CONN);
-    7b80:	2000      	movs	r0, #0
-    7b82:	4b2a      	ldr	r3, [pc, #168]	; (7c2c <Initialize_LoRa+0x1d4>)
-    7b84:	4798      	blx	r3
+    7b78:	2000      	movs	r0, #0
+    7b7a:	4b2c      	ldr	r3, [pc, #176]	; (7c2c <Initialize_LoRa+0x1d4>)
+    7b7c:	4798      	blx	r3
         if( MiApp_Set(CHANNEL, &myChannel) == false )
-    7b86:	492a      	ldr	r1, [pc, #168]	; (7c30 <Initialize_LoRa+0x1d8>)
-    7b88:	2000      	movs	r0, #0
-    7b8a:	4b2a      	ldr	r3, [pc, #168]	; (7c34 <Initialize_LoRa+0x1dc>)
-    7b8c:	4798      	blx	r3
-    7b8e:	2800      	cmp	r0, #0
-    7b90:	d01b      	beq.n	7bca <Initialize_LoRa+0x172>
+    7b7e:	492c      	ldr	r1, [pc, #176]	; (7c30 <Initialize_LoRa+0x1d8>)
+    7b80:	2000      	movs	r0, #0
+    7b82:	4b2c      	ldr	r3, [pc, #176]	; (7c34 <Initialize_LoRa+0x1dc>)
+    7b84:	4798      	blx	r3
+    7b86:	2800      	cmp	r0, #0
+    7b88:	d01f      	beq.n	7bca <Initialize_LoRa+0x172>
 		MiApp_StartConnection(START_CONN_DIRECT, 10, (1L << myChannel), Connection_Confirm);
-    7b92:	4b27      	ldr	r3, [pc, #156]	; (7c30 <Initialize_LoRa+0x1d8>)
-    7b94:	781b      	ldrb	r3, [r3, #0]
-    7b96:	2201      	movs	r2, #1
-    7b98:	409a      	lsls	r2, r3
-    7b9a:	4b27      	ldr	r3, [pc, #156]	; (7c38 <Initialize_LoRa+0x1e0>)
-    7b9c:	210a      	movs	r1, #10
-    7b9e:	2000      	movs	r0, #0
-    7ba0:	4c26      	ldr	r4, [pc, #152]	; (7c3c <Initialize_LoRa+0x1e4>)
-    7ba2:	47a0      	blx	r4
+    7b8a:	4b29      	ldr	r3, [pc, #164]	; (7c30 <Initialize_LoRa+0x1d8>)
+    7b8c:	781b      	ldrb	r3, [r3, #0]
+    7b8e:	2201      	movs	r2, #1
+    7b90:	409a      	lsls	r2, r3
+    7b92:	4b29      	ldr	r3, [pc, #164]	; (7c38 <Initialize_LoRa+0x1e0>)
+    7b94:	210a      	movs	r1, #10
+    7b96:	2000      	movs	r0, #0
+    7b98:	4c28      	ldr	r4, [pc, #160]	; (7c3c <Initialize_LoRa+0x1e4>)
+    7b9a:	47a0      	blx	r4
 		DumpConnection(0xFF);
-    7ba4:	20ff      	movs	r0, #255	; 0xff
-    7ba6:	4b26      	ldr	r3, [pc, #152]	; (7c40 <Initialize_LoRa+0x1e8>)
-    7ba8:	4798      	blx	r3
+    7b9c:	20ff      	movs	r0, #255	; 0xff
+    7b9e:	4b28      	ldr	r3, [pc, #160]	; (7c40 <Initialize_LoRa+0x1e8>)
+    7ba0:	4798      	blx	r3
+		port_base->OUTCLR.reg = pin_mask;
+    7ba2:	2280      	movs	r2, #128	; 0x80
+    7ba4:	02d2      	lsls	r2, r2, #11
+    7ba6:	4b18      	ldr	r3, [pc, #96]	; (7c08 <Initialize_LoRa+0x1b0>)
+    7ba8:	615a      	str	r2, [r3, #20]
         DemoOutput_Instruction();
     7baa:	4b26      	ldr	r3, [pc, #152]	; (7c44 <Initialize_LoRa+0x1ec>)
     7bac:	4798      	blx	r3
@@ -15166,13 +15166,13 @@ bool Initialize_LoRa(bool freezer_enable)
 			for(i = 0; i<MY_ADDRESS_LENGTH; i++)
     7bc4:	42b4      	cmp	r4, r6
     7bc6:	d1fa      	bne.n	7bbe <Initialize_LoRa+0x166>
-    7bc8:	e7d7      	b.n	7b7a <Initialize_LoRa+0x122>
+    7bc8:	e7d3      	b.n	7b72 <Initialize_LoRa+0x11a>
             DemoOutput_ChannelError(myChannel);
     7bca:	4b19      	ldr	r3, [pc, #100]	; (7c30 <Initialize_LoRa+0x1d8>)
     7bcc:	7818      	ldrb	r0, [r3, #0]
     7bce:	4b1f      	ldr	r3, [pc, #124]	; (7c4c <Initialize_LoRa+0x1f4>)
     7bd0:	4798      	blx	r3
-    7bd2:	e7de      	b.n	7b92 <Initialize_LoRa+0x13a>
+    7bd2:	e7da      	b.n	7b8a <Initialize_LoRa+0x132>
     7bd4:	000078dd 	.word	0x000078dd
     7bd8:	0000b375 	.word	0x0000b375
     7bdc:	0000ae89 	.word	0x0000ae89

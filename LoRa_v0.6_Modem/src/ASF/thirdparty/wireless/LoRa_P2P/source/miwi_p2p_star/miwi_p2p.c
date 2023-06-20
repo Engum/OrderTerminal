@@ -1279,7 +1279,7 @@ miwi_status_t MiApp_ProtocolInit(defaultParametersRomOrRam_t *defaultRomOrRamPar
         return false;
      }
  #endif
- 
+ //Delete
 
 #ifdef ENABLE_INDIRECT_MESSAGE
     
