@@ -50,27 +50,8 @@ void UART_IO_init(void)
 
 void UART_cb_init(void)
 {
-	UART_LoRa_cb_init();
 	UART_IO_cb_init();
 }
-
-void UART_LoRa_cb_init(void)
-{
-	usart_register_callback(&UART_LoRa,UART_LoRa_rx_cb, USART_CALLBACK_BUFFER_RECEIVED);
-	
-	usart_enable_callback(&UART_LoRa, USART_CALLBACK_BUFFER_RECEIVED);
-}
-
-void UART_LoRa_tx_cb(struct usart_module *const usart_module)
-{
-	port_pin_toggle_output_level(LED_0_PIN);
-}
-
-void UART_LoRa_rx_cb(struct usart_module *const usart_module)
-{
-	
-}
-
 
 
 void UART_IO_cb_init(void)
