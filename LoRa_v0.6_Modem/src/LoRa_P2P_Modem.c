@@ -9,11 +9,6 @@
 #include "UART_LoRa_AUTOPAX.h"
 #include "UpdateQueue.h"
 
-
-#if defined(ENABLE_SLEEP_FEATURE)
-#include "sleep_mgr.h"
-#endif
-
 #if defined (ENABLE_CONSOLE)
 #include "sio2host.h"
 #endif

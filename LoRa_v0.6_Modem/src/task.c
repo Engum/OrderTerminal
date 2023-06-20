@@ -39,9 +39,7 @@
 #include "UART_LoRa_AUTOPAX.h"
 #include "UpdateQueue.h"
 
-#if defined(ENABLE_SLEEP_FEATURE)
-#include "sleep_mgr.h"
-#endif
+
 #include "sw_timer.h"
 #include "phy.h"
 /************************** VARIABLES ************************************/
