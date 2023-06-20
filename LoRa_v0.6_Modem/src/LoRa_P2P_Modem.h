@@ -1,6 +1,8 @@
 
 #ifndef LORA_P2P_MODEM_H
 #define LORA_P2P_MODEM_H
+//#define DEBUG
+
 
 /*********************************************************************
 * Function: void ReceivedDataIndication (RECEIVED_MESSAGE *ind)
