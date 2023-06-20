@@ -99,10 +99,8 @@ void ReceivedDataIndication (RECEIVED_MESSAGE *ind)
 		#if defined(ENABLE_CONSOLE)
 		DemoOutput_HandleMessage();
 		#endif
-		DemoOutput_UpdateTxRx(TxNum, ++RxNum);
 		// Toggle LED2 to indicate receiving a packet.
 		LED_Toggle(LED0);
-		DemoOutput_Instruction();	
 	}
 	else
 	{

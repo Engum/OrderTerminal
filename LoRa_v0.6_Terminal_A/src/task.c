@@ -180,9 +180,6 @@ bool Initialize_LoRa(bool freezer_enable)
 			}
 		}
 		PHY_SetIEEEAddr((uint8_t *)&myLongAddress);
-#if defined(PROTOCOL_P2P)  
-		DemoOutput_Instruction();
-#endif
 	}
 	else
 	{
@@ -283,9 +280,8 @@ bool Initialize_LoRa(bool freezer_enable)
         // Set default channel
         if( MiApp_Set(CHANNEL, &myChannel) == false )
         {
-            DemoOutput_ChannelError(myChannel);
         }
-				
+        
 		uint16_t broadcastAddress = 0xFFFF;
 		i = MiApp_EstablishConnection(myChannel, 0, (uint8_t*)&broadcastAddress, 0, Connection_Confirm);
 
@@ -312,10 +308,7 @@ bool Initialize_LoRa(bool freezer_enable)
 #endif
 
         // Turn on LED 1 to indicate connection established
-		LED_On(LED0);
-#if defined(PROTOCOL_P2P)
-        DemoOutput_Instruction();
-#endif    
+		LED_On(LED0);   
     printf("\n Satt opp nettverk \r\n");
 	}
 	/* Create SW timer for transmission timeout */
