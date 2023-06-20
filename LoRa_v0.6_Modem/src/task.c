@@ -313,7 +313,7 @@ bool Initialize_LoRa(bool freezer_enable)
 #endif
 
         // Turn on LED 1 to indicate connection established
-		LED_On(LED0);
+		//LED_On(LED0);
 #if defined(PROTOCOL_P2P)
         DemoOutput_Instruction();
 #endif    
@@ -322,7 +322,7 @@ bool Initialize_LoRa(bool freezer_enable)
 	/* Create SW timer for transmission timeout */
 	SwTimerCreate(&TxTimerId);
 	printf("\n Kjort freezer \r\n");
-	
+	LED_On(LED1);
 	return true;
 }
 

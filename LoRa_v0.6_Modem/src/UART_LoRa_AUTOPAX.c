@@ -11,7 +11,6 @@ void UART_init(void)
 	UART_IO_init();
 }
 
-
 void UART_IO_init(void)
 {
 	struct usart_config config_uart_IO;
@@ -23,10 +22,7 @@ void UART_IO_init(void)
 	config_uart_IO.pinmux_pad1 = PINMUX_UNUSED; //UNUSED
 	config_uart_IO.pinmux_pad2 = PINMUX_UNUSED;
 	config_uart_IO.pinmux_pad3 = PINMUX_PB23D_SERCOM5_PAD3; //RX
-	
-	//config_uart_IO.start_frame_detection_enable = true;
-	
-	
+		
 	while (usart_init(&UART_IO,SERCOM5, &config_uart_IO) != STATUS_OK) {
 	}
 	
@@ -51,11 +47,6 @@ void UART_IO_rx_cb(struct usart_module *const usart_module)
 {
 	printf("\n\r UART message received %x", rx_buffer_IO[0]);
 	M_SendReceivedUARTMessage(rx_buffer_IO[0]);
-}
-
-void UART_SAM_To_RPi(uint8_t* data)
-{
-	usart_write_buffer_wait(&UART_LoRa, data, 1);
 }
 
 void UART_SAM_To_IO(uint8_t* data)
